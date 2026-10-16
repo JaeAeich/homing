@@ -1,0 +1,18 @@
+# secrets and run artefacts: never committed
+.env
+.env.*
+!.env.example
+state/
+runs/
+inputs/local/
+*.trace.zip
+
+# python / tooling
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+tests/fixtures/**/mutated/

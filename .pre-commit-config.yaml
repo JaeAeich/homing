@@ -1,0 +1,75 @@
+# Run by prek (fast, drop-in for pre-commit): `make hooks` installs it.
+# Python tools run from the project's locked environment, so hooks and CI use
+# the same versions.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+      - id: end-of-file-fixer
+        exclude: ^(src/homing/web/static/vendor/|tests/fixtures/)
+      - id: trailing-whitespace
+        exclude: ^(src/homing/web/static/vendor/|tests/fixtures/)
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --fix --force-exclude
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format --force-exclude
+        language: system
+        types: [python]
+      - id: ty
+        name: ty
+        entry: uv run ty check
+        language: system
+        pass_filenames: false
+        types: [python]
+      - id: vulture
+        name: vulture
+        entry: uv run vulture
+        language: system
+        pass_filenames: false
+        types: [python]
+      - id: typos
+        name: typos
+        entry: uv run typos --force-exclude
+        language: system
+      - id: djlint
+        name: djlint
+        entry: uv run djlint --check
+        language: system
+        files: ^(src/homing/web|mock_portal)/templates/.*\.html$
+      - id: yamllint
+        name: yamllint
+        entry: uv run yamllint --strict
+        language: system
+        types: [yaml]
+      - id: pyproject
+        name: validate-pyproject + pyproject-fmt
+        entry: >-
+          bash -c 'uv run validate-pyproject pyproject.toml
+          && uv run pyproject-fmt --check pyproject.toml'
+        language: system
+        files: ^pyproject\.toml$
+        pass_filenames: false
+      - id: editorconfig-checker
+        name: editorconfig-checker (80 columns, every file)
+        entry: uv run ec
+        language: system
+        types: [text]
+      - id: mdformat
+        name: mdformat (Markdown wrapped at 80)
+        entry: uv run mdformat --check
+        language: system
+        types: [markdown]
+        exclude: ^src/homing/web/static/vendor/

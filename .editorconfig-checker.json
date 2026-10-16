@@ -1,0 +1,15 @@
+{
+  "Exclude": [
+    "\\.git/",
+    "\\.venv/",
+    "uv\\.lock$",
+    "LICENSE",
+    "recipes/schema\\.json$",
+    "src/homing/web/static/vendor/",
+    "tests/fixtures/",
+    "samples/[a-z]+/(evidence/|manifest\\.json$|output\\.txt$)"
+  ],
+  "Disable": {
+    "IndentSize": true
+  }
+}

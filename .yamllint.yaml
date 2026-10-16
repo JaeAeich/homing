@@ -1,0 +1,13 @@
+# yamllint: recipes, CI workflows, compose, pre-commit config.
+extends: default
+rules:
+  line-length: {max: 80}
+  document-start: disable          # recipes are plain documents, no `---`
+  truthy: {check-keys: false}      # GitHub Actions uses `on:`
+  braces: {min-spaces-inside: 0, max-spaces-inside: 1}
+  comments: {min-spaces-from-content: 1}
+ignore: |
+  .venv/
+  node_modules/
+  runs/
+  state/
