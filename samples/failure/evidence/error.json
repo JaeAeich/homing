@@ -1,0 +1,8 @@
+{
+  "type": "LocatorNotFoundError",
+  "code": "LOCATOR_NOT_FOUND",
+  "message": "could not resolve 'title' to exactly one visible element",
+  "stage": "fill_form",
+  "field": "title",
+  "evidence": null
+}

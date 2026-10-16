@@ -1,0 +1,213 @@
+{
+  "run_id": "github-20261017T054321-ec9022",
+  "portal": "github",
+  "credential_id": "default",
+  "status": "failed",
+  "started_at": "2026-10-17T05:43:21.985086Z",
+  "finished_at": "2026-10-17T05:43:43.919782Z",
+  "duration_ms": 21934,
+  "inputs": {
+    "repo": "[REDACTED_REPO_OWNER]/homing-scratch",
+    "draft_tag": "v9.9.0-never-published",
+    "draft_target": "main",
+    "draft_title": "Automation test draft v0.1.0",
+    "draft_body": "Filled by homing for v0.1.0. Never published.",
+    "release_tag": "v0.1.0",
+    "asset_name": "statement.pdf"
+  },
+  "session": {
+    "mode": "reused",
+    "reason": "alive_check_passed"
+  },
+  "pages_visited": [
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "title": "",
+      "stage": "session"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "title": "Loading https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "stage": "open_repo"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "title": "[REDACTED_GITHUB_USERNAME]/homing-scratch: homing scratch (safe to delete)",
+      "stage": "open_repo"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "open_releases"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "open_releases"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "open_new_release"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/new",
+      "title": "",
+      "stage": "open_new_release"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/new",
+      "title": "",
+      "stage": "fill_form"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/new",
+      "title": "",
+      "stage": "fill_form"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/new",
+      "title": "New release · [REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "stage": "fill_form"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/new",
+      "title": "",
+      "stage": "fill_form"
+    }
+  ],
+  "plan": [
+    "open_repo",
+    "open_releases",
+    "open_new_release",
+    "fill_form",
+    "save_draft",
+    "capture_draft",
+    "capture_statement"
+  ],
+  "stages": [
+    {
+      "key": "open_repo",
+      "status": "ok",
+      "duration_ms": 1614,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "releases_sidebar",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=link name='Releases'"
+        }
+      ]
+    },
+    {
+      "key": "open_releases",
+      "status": "ok",
+      "duration_ms": 946,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "releases_link",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=link name='Releases'"
+        }
+      ]
+    },
+    {
+      "key": "open_new_release",
+      "status": "ok",
+      "duration_ms": 858,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "new_release_link",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=link name='Draft a new release'"
+        }
+      ]
+    },
+    {
+      "key": "fill_form",
+      "status": "failed",
+      "duration_ms": 17163,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "tag_picker",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='/^Tag:/'"
+        },
+        {
+          "field": "tag",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=textbox name='Filter tags'"
+        },
+        {
+          "field": "create_tag",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='Create new tag' within=dialog:'Select a tag'"
+        },
+        {
+          "field": "confirm_tag",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='/^Create$/' within=dialog:'Create new tag'"
+        },
+        {
+          "field": "previous_tag",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='/^Previous tag:/'"
+        },
+        {
+          "field": "target_branch",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='/^Target:/'"
+        }
+      ]
+    }
+  ],
+  "files": [],
+  "error": {
+    "type": "LocatorNotFoundError",
+    "code": "LOCATOR_NOT_FOUND",
+    "message": "could not resolve 'title' to exactly one visible element",
+    "stage": "fill_form",
+    "field": "title",
+    "evidence": "evidence"
+  },
+  "provenance": {
+    "homing": "0.1.0",
+    "git_sha": null,
+    "recipe": "broken-github.yaml",
+    "recipe_sha256": "3b0919bf323d6330c072768463272cb7ff8f488342fb2017c10f9a2f56f9013c",
+    "inputs": "github-v0.1.0.json",
+    "inputs_sha256": "f31682cc76cd37177cdc5bf4e8772071c275a70df1659fbe06aaf985ee3581b8",
+    "playwright": "1.64.0",
+    "chromium": "156.0.8078.4",
+    "forked_from": null
+  }
+}

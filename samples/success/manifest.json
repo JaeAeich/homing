@@ -1,0 +1,425 @@
+{
+  "run_id": "github-20261017T054146-68c46f",
+  "portal": "github",
+  "credential_id": "default",
+  "status": "succeeded",
+  "started_at": "2026-10-17T05:41:46.732806Z",
+  "finished_at": "2026-10-17T05:42:13.614576Z",
+  "duration_ms": 26881,
+  "inputs": {
+    "repo": "[REDACTED_REPO_OWNER]/homing-scratch",
+    "draft_tag": "v9.9.0-never-published",
+    "draft_target": "main",
+    "draft_title": "Automation test draft v0.1.0",
+    "draft_body": "Filled by homing for v0.1.0. Never published.",
+    "release_tag": "v0.1.0",
+    "asset_name": "statement.pdf"
+  },
+  "session": {
+    "mode": "fresh_login",
+    "reason": "missing"
+  },
+  "pages_visited": [
+    {
+      "url": "https://github.com/login",
+      "title": "",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/login",
+      "title": "",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/login",
+      "title": "Sign in to GitHub · GitHub",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/sessions/two-factor/webauthn",
+      "title": "",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/sessions/two-factor/webauthn",
+      "title": "Two-factor authentication · GitHub",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/sessions/two-factor/webauthn",
+      "title": "",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/sessions/two-factor/app",
+      "title": "",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/sessions/two-factor/app",
+      "title": "Two-factor authentication · GitHub",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/sessions/two-factor/app",
+      "title": "",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/",
+      "title": "",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/",
+      "title": "",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/",
+      "title": "",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "title": "",
+      "stage": "login"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "title": "Loading https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "stage": "open_repo"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "title": "[REDACTED_GITHUB_USERNAME]/homing-scratch: homing scratch (safe to delete)",
+      "stage": "open_repo"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "open_releases"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "open_releases"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "Releases · [REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "stage": "open_releases"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/new",
+      "title": "",
+      "stage": "open_new_release"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/new",
+      "title": "",
+      "stage": "fill_form"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/new",
+      "title": "",
+      "stage": "fill_form"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/new",
+      "title": "New release · [REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "stage": "fill_form"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/new",
+      "title": "",
+      "stage": "fill_form"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "save_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "Releases · [REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "stage": "save_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "save_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/edit/untagged-d15fad79e0bd65541a6e",
+      "title": "",
+      "stage": "save_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "capture_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "Releases · [REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "stage": "capture_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "capture_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "capture_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "Releases · [REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "stage": "capture_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases",
+      "title": "",
+      "stage": "capture_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/tag/untagged-d15fad79e0bd65541a6e",
+      "title": "",
+      "stage": "capture_draft"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/tag/v0.1.0",
+      "title": "",
+      "stage": "capture_statement"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/tag/v0.1.0",
+      "title": "Release v0.1.0 · [REDACTED_GITHUB_USERNAME]/homing-scratch",
+      "stage": "capture_statement"
+    },
+    {
+      "url": "https://github.com/[REDACTED_GITHUB_USERNAME]/homing-scratch/releases/tag/v0.1.0",
+      "title": "",
+      "stage": "capture_statement"
+    }
+  ],
+  "plan": [
+    "open_repo",
+    "open_releases",
+    "open_new_release",
+    "fill_form",
+    "save_draft",
+    "capture_draft",
+    "capture_statement"
+  ],
+  "stages": [
+    {
+      "key": "open_repo",
+      "status": "ok",
+      "duration_ms": 1668,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "releases_sidebar",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=link name='Releases'"
+        }
+      ]
+    },
+    {
+      "key": "open_releases",
+      "status": "ok",
+      "duration_ms": 883,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "releases_link",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=link name='Releases'"
+        }
+      ]
+    },
+    {
+      "key": "open_new_release",
+      "status": "ok",
+      "duration_ms": 590,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "new_release_link",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=link name='Draft a new release'"
+        }
+      ]
+    },
+    {
+      "key": "fill_form",
+      "status": "ok",
+      "duration_ms": 2201,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "tag_picker",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='/^Tag:/'"
+        },
+        {
+          "field": "tag",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=textbox name='Filter tags'"
+        },
+        {
+          "field": "create_tag",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='Create new tag' within=dialog:'Select a tag'"
+        },
+        {
+          "field": "confirm_tag",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='/^Create$/' within=dialog:'Create new tag'"
+        },
+        {
+          "field": "previous_tag",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='/^Previous tag:/'"
+        },
+        {
+          "field": "target_branch",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='/^Target:/'"
+        },
+        {
+          "field": "title",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=textbox name='Enter release title'"
+        },
+        {
+          "field": "body",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=textbox name='Release description'"
+        }
+      ]
+    },
+    {
+      "key": "save_draft",
+      "status": "ok",
+      "duration_ms": 1762,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "save_draft",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=button name='Save draft'"
+        }
+      ]
+    },
+    {
+      "key": "capture_draft",
+      "status": "ok",
+      "duration_ms": 12044,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "draft_link",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=link name='Automation test draft v0.1.0' exact within=main section"
+        },
+        {
+          "field": "draft_link",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=link name='Automation test draft v0.1.0' exact within=main section"
+        }
+      ]
+    },
+    {
+      "key": "capture_statement",
+      "status": "ok",
+      "duration_ms": 1796,
+      "attempts": 1,
+      "retries": [],
+      "note": null,
+      "resolver": [
+        {
+          "field": "asset",
+          "strategy": "role",
+          "frame": "main",
+          "drift": false,
+          "query": "role=link name='statement.pdf'"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "files/v9.9.0-never-published-draft.pdf",
+      "bytes": 126871,
+      "sha256": "386e545a9740bfc83041995cff00cd7b68f2b4905c5bc5bb77b21cb23c355917",
+      "kind": "print_pdf",
+      "compare": "text",
+      "text_sha256": "8eb23a7678a843301978fe7d6a745ab70159900013808de15db68d2b5c7e3171"
+    },
+    {
+      "path": "files/v0.1.0-statement.pdf",
+      "bytes": 1039,
+      "sha256": "b8b8a153ca52b26fee044c4282d17d8f37417df6ad4f2569f6b3bb9077f6b858",
+      "kind": "download",
+      "compare": "bytes",
+      "text_sha256": "3d7c4eb3b63fdbabfca3ea42cdaa815eac0d1455c4492ae5dd2cfd045e1956ad"
+    }
+  ],
+  "error": null,
+  "provenance": {
+    "homing": "0.1.0",
+    "git_sha": null,
+    "recipe": "github.yaml",
+    "recipe_sha256": "bdfb0fbef61f8d83f114d9ccd3d83e1d387e2f677f0a1a6ed728ed5f220c420b",
+    "inputs": "github-v0.1.0.json",
+    "inputs_sha256": "f31682cc76cd37177cdc5bf4e8772071c275a70df1659fbe06aaf985ee3581b8",
+    "playwright": "1.64.0",
+    "chromium": "156.0.8078.4",
+    "forked_from": null
+  }
+}

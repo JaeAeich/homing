@@ -1,0 +1,13 @@
+✗ run github-20261017T054321-ec9022  failed  21934 ms
+  session:  reused (alive_check_passed)
+stage             status  ms     tries  resolver
+open_repo         ok      1614   1      releases_sidebar:role
+open_releases     ok      946    1      releases_link:role
+open_new_release  ok      858    1      new_release_link:role
+fill_form         failed  17163  1      tag_picker:role, tag:role,
+                                        create_tag:role, confirm_tag:role,
+                                        previous_tag:role, target_branch:role
+✗ LOCATOR_NOT_FOUND at fill_form: could not resolve 'title' to exactly one visible element
+  evidence: runs/github-20261017T054321-ec9022/evidence
+  retry:    homing resume github-20261017T054321-ec9022
+  manifest: runs/github-20261017T054321-ec9022/manifest.json

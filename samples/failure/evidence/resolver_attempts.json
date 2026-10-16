@@ -1,0 +1,16 @@
+[
+  {
+    "strategy": "role",
+    "query": "role=textbox name='Release headline that does not exist'",
+    "frame": "main",
+    "matches": 0,
+    "rejected_reason": "no_match"
+  },
+  {
+    "strategy": "css",
+    "query": "css=#nope",
+    "frame": "main",
+    "matches": 0,
+    "rejected_reason": "no_match"
+  }
+]

@@ -1,0 +1,16 @@
+✓ run github-20261017T054146-68c46f  succeeded  26881 ms
+  session:  fresh_login (missing)
+stage              status  ms     tries  resolver
+open_repo          ok      1668   1      releases_sidebar:role
+open_releases      ok      883    1      releases_link:role
+open_new_release   ok      590    1      new_release_link:role
+fill_form          ok      2201   1      tag_picker:role, tag:role,
+                                         create_tag:role, confirm_tag:role,
+                                         previous_tag:role, target_branch:role,
+                                         title:role, body:role
+save_draft         ok      1762   1      save_draft:role
+capture_draft      ok      12044  1      draft_link:role
+capture_statement  ok      1796   1      asset:role
+  file:     files/v9.9.0-never-published-draft.pdf  126871 B  386e545a9740
+  file:     files/v0.1.0-statement.pdf  1039 B  b8b8a153ca52
+  manifest: runs/github-20261017T054146-68c46f/manifest.json
