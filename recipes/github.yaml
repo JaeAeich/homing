@@ -1,0 +1,234 @@
+# GitHub: the live public target. Private scratch repo owned by whoever runs
+# it (`make bootstrap`). The only write is "Save draft"; publish/delete are
+# blocked.
+#
+# Selectors marked `verify-live` come from GitHub docs and the public login
+# page; confirm them in headed mode (`make run HEADED=1`) before trusting them
+# (see README §Live checks).
+portal: github
+version: 1
+base_url: https://github.com
+credential_id: default
+
+inputs:
+  repo:
+    pattern: "^[A-Za-z0-9-]+/[A-Za-z0-9._-]+$"
+    placeholder: OWNER
+    description: "OWNER/homing-scratch (make bootstrap fills it in)"
+  draft_tag: { pattern: "^v[0-9A-Za-z.-]+$" }
+  draft_target: { description: "Branch the new tag would point at" }
+  draft_title: {}
+  draft_body: {}
+  release_tag: { pattern: "^v[0-9A-Za-z.-]+$" }
+  asset_name: {}
+
+derived:
+  repo_owner: "{{ repo.split('/')[0] }}"
+  repo_name: "{{ repo.split('/')[1] }}"
+
+auth:
+  flow: password
+  login_url: https://github.com/login
+  secrets: { username: GITHUB_USERNAME, password: GITHUB_PASSWORD }
+  second_factor: { type: totp, secret_key: GITHUB_TOTP_SECRET }
+  fields:
+    username:
+      role: textbox
+      name: Username or email address
+      label: Username or email address
+      css: ["#login_field", "input[name=login]"]
+    password:
+      label: Password
+      css: ["#password", "input[name=password]"]
+    # name_regex, not name: "Sign in with a passkey" also contains "Sign in"
+    # (saved fixture).
+    submit:
+      role: button
+      name_regex: "^Sign in$"
+      css: ["input[type=submit][name=commit]"]
+    otp:  # the app-code form has a single text box
+      role: textbox
+      name_regex: "(?i)code"
+      near_text: Authentication code
+      css: ["#app_totp", "input[name=app_otp]"]
+    otp_submit:
+      role: button
+      name: Verify
+      css: ["form button[type=submit]"]
+  otp_url_matches: "/sessions/two-factor"
+  # Accounts with a passkey land on the passkey prompt; codes live here.
+  otp_entry_url: https://github.com/sessions/two-factor/app
+  code_rejected:
+    text: Two-factor authentication failed
+    url_matches: "/sessions/two-factor"
+  bad_credentials: { text: Incorrect username or password }
+  interstitials:  # clicked if present
+    - { role: button, name: Ask me later }
+    - { role: button, name: Remind me later }
+    - { role: link, name: Skip 2FA verification }
+  alive_check:
+    url: "{{ base_url }}/{{ repo }}"
+    # Compared by hash.
+    meta: { name: user-login, equals_secret: GITHUB_USERNAME }
+    # Owner-only tab.
+    element: { role: link, name_regex: "^Settings$", css: ["#settings-tab"] }
+  sensitive_values: [GITHUB_USERNAME]
+
+write_guard:
+  allow:
+    - { role: button, name: Save draft }  # the only write
+    # Tag dialog buttons: the tag is only created on publish, never here.
+    - { role: button, name: Create new tag }
+    - { role: button, name_regex: "^Create$" }
+  deny:
+    - { role: button, name: Publish release }
+    - { name_regex: "(?i)delete|publish|submit|discard" }
+
+redaction:
+  inputs: [repo_owner]
+  # The signed-in user's numeric id (avatar and socket URLs) and the
+  # socket's session token.
+  patterns: ['(?<=/u/)\d+', '(?<=[?&;]session=)[^"&\s<>]+']
+  mask:
+    - css: ["header", ".AppHeader", "img.avatar", ".AppHeader-user"]
+
+captcha_selectors: ["#captcha-container", "iframe[src*='octocaptcha']"]
+
+stages:
+  - key: open_repo
+    entry_url: "{{ base_url }}/{{ repo }}"
+    steps:
+      # The sidebar loads after the page and sometimes fails: reload then.
+      - wait_for:
+          field: releases_sidebar
+          role: link
+          name: Releases
+          css: ["a[href$='/releases']"]
+          reload: true
+    post: { url_matches: "/{{ repo_name }}$" }
+
+  - key: open_releases
+    steps:
+      - click:
+          field: releases_link
+          role: link
+          name: Releases
+          css: ["a[href$='/releases']"]
+    post: { url_matches: "/releases$" }
+
+  - key: open_new_release
+    steps:
+      - click:
+          field: new_release_link
+          role: link
+          name: Draft a new release
+          css: ["a[href$='/releases/new']"]
+    post: { url_matches: "/releases/new" }
+
+  - key: fill_form
+    entry_url: "{{ base_url }}/{{ repo }}/releases/new"
+    steps:
+      - click:
+          field: tag_picker
+          role: button
+          name_regex: "^Tag:"
+          css: ["button[aria-label^='Tag:']"]
+      - fill:
+          field: tag
+          value: "{{ draft_tag }}"
+          role: textbox
+          name: Filter tags
+          label: Filter tags
+          css: ["input[placeholder*='create a new tag']"]
+      - click:
+          field: create_tag
+          role: button
+          name: Create new tag
+          within: { role: dialog, name: Select a tag }
+      - click:
+          field: confirm_tag
+          role: button
+          name_regex: "^Create$"
+          within: { role: dialog, name: Create new tag }
+      # Dependent: the previous-tag picker only appears once a new tag is set.
+      - wait_for:
+          field: previous_tag
+          role: button
+          name_regex: "^Previous tag:"
+      - select:
+          field: target_branch
+          value: "{{ draft_target }}"
+          role: button
+          name_regex: "^Target:"
+      - fill:
+          field: title
+          value: "{{ draft_title }}"
+          role: textbox
+          name: Enter release title
+          label: Enter release title
+          css: ["#release_name", "input[name='release[name]']"]
+      - fill:
+          field: body
+          value: "{{ draft_body }}"
+          role: textbox
+          name: Release description
+          label: Release description
+          css: ["#release_body", "textarea[name='release[body]']"]
+    post: { read_back: [title, body] }
+
+  - key: save_draft
+    side_effect: true  # never auto-retried after the click
+    idempotency_check:  # first, and on resume: reuse it
+      goto: "{{ base_url }}/{{ repo }}/releases"
+      exists:
+        role: link
+        name: "{{ draft_title }}"
+        css: ["a:text-is('{{ draft_title }}')"]
+    steps:
+      - click:
+          field: save_draft
+          role: button
+          name: Save draft
+          css: ["button.js-save-draft"]
+    # GitHub lands on the draft's edit page; the title is in an input there.
+    post: { url_matches: "/releases/edit/" }
+
+  - key: capture_draft
+    entry_url: "{{ base_url }}/{{ repo }}/releases"
+    steps:
+      # A just-saved draft reaches the list a few seconds later. The title
+      # is also in the side navigation and the Edit button's label: match it
+      # whole, inside the release card.
+      - wait_for:
+          field: draft_link
+          role: link
+          name: "{{ draft_title }}"
+          exact: true
+          within: { css: "main section" }
+          reload: true
+      - click:
+          field: draft_link
+          role: link
+          name: "{{ draft_title }}"
+          exact: true
+          within: { css: "main section" }
+          css: ["main section a.Link--primary[href*='/releases/tag/']"]
+      - print_pdf: { save_as: "{{ draft_tag }}-draft.pdf", compare: text }
+
+  - key: capture_statement
+    entry_url: "{{ base_url }}/{{ repo }}/releases/tag/{{ release_tag }}"
+    steps:
+      - download:
+          field: asset
+          role: link
+          name: "{{ asset_name }}"
+          save_as: "{{ release_tag }}-{{ asset_name }}"
+          css: ["a[href$='/{{ asset_name }}']"]
+    post:
+      files:
+        - path: "{{ draft_tag }}-draft.pdf"
+          magic: "%PDF"
+          min_bytes: 1000
+        - path: "{{ release_tag }}-{{ asset_name }}"
+          magic: "%PDF"
+          min_bytes: 100

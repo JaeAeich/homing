@@ -1,0 +1,1573 @@
+{
+  "$defs": {
+    "AliveCheck": {
+      "additionalProperties": false,
+      "description": "A *positive* proof the session is logged in.\n\nA missing redirect proves nothing.",
+      "properties": {
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "meta": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MetaCheck"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "element": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocatorSpec"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "absent_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Absent Text"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "AliveCheck",
+      "type": "object"
+    },
+    "Auth": {
+      "additionalProperties": false,
+      "description": "How to log in and how to tell whether we already are.",
+      "properties": {
+        "flow": {
+          "const": "password",
+          "default": "password",
+          "title": "Flow",
+          "type": "string"
+        },
+        "login_url": {
+          "title": "Login Url",
+          "type": "string"
+        },
+        "secrets": {
+          "$ref": "#/$defs/AuthSecrets"
+        },
+        "fields": {
+          "$ref": "#/$defs/AuthFields"
+        },
+        "second_factor": {
+          "default": {
+            "type": "none"
+          },
+          "discriminator": {
+            "mapping": {
+              "email": "#/$defs/EmailFactor",
+              "human": "#/$defs/HumanFactor",
+              "none": "#/$defs/NoSecondFactor",
+              "totp": "#/$defs/TotpFactor",
+              "totp_bad_first": "#/$defs/TotpFactor"
+            },
+            "propertyName": "type"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NoSecondFactor"
+            },
+            {
+              "$ref": "#/$defs/TotpFactor"
+            },
+            {
+              "$ref": "#/$defs/EmailFactor"
+            },
+            {
+              "$ref": "#/$defs/HumanFactor"
+            }
+          ],
+          "title": "Second Factor"
+        },
+        "otp_url_matches": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Otp Url Matches"
+        },
+        "otp_entry_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Where the code form lives, for portals that open another second-factor method first (GitHub shows a passkey prompt).",
+          "title": "Otp Entry Url"
+        },
+        "code_rejected": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TextMarker"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "bad_credentials": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TextMarker"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "interstitials": {
+          "items": {
+            "$ref": "#/$defs/LocatorSpec"
+          },
+          "title": "Interstitials",
+          "type": "array"
+        },
+        "alive_check": {
+          "$ref": "#/$defs/AliveCheck"
+        },
+        "sensitive_values": {
+          "description": "Extra secret keys whose values must be redacted (e.g. owner name).",
+          "items": {
+            "type": "string"
+          },
+          "title": "Sensitive Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "login_url",
+        "secrets",
+        "fields",
+        "alive_check"
+      ],
+      "title": "Auth",
+      "type": "object"
+    },
+    "AuthFields": {
+      "additionalProperties": false,
+      "description": "Locators for the login form. Each spec's `field` defaults to its key.",
+      "properties": {
+        "username": {
+          "$ref": "#/$defs/LocatorSpec"
+        },
+        "password": {
+          "$ref": "#/$defs/LocatorSpec"
+        },
+        "submit": {
+          "$ref": "#/$defs/LocatorSpec"
+        },
+        "otp": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocatorSpec"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "otp_submit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocatorSpec"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "username",
+        "password",
+        "submit"
+      ],
+      "title": "AuthFields",
+      "type": "object"
+    },
+    "AuthSecrets": {
+      "additionalProperties": false,
+      "description": "Names of secrets (keys for the `SecretProvider`), never the values.",
+      "properties": {
+        "username": {
+          "title": "Username",
+          "type": "string"
+        },
+        "password": {
+          "title": "Password",
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ],
+      "title": "AuthSecrets",
+      "type": "object"
+    },
+    "CompareMode": {
+      "description": "How \"the same document\" is judged across runs.",
+      "enum": [
+        "bytes",
+        "text"
+      ],
+      "title": "CompareMode",
+      "type": "string"
+    },
+    "EmailFactor": {
+      "additionalProperties": false,
+      "description": "Codes mailed to an inbox, fetched over IMAP.",
+      "properties": {
+        "type": {
+          "const": "email",
+          "title": "Type",
+          "type": "string"
+        },
+        "host": {
+          "title": "Host",
+          "type": "string"
+        },
+        "user_key": {
+          "title": "User Key",
+          "type": "string"
+        },
+        "password_key": {
+          "title": "Password Key",
+          "type": "string"
+        },
+        "port": {
+          "default": 993,
+          "title": "Port",
+          "type": "integer"
+        },
+        "ssl": {
+          "default": true,
+          "title": "Ssl",
+          "type": "boolean"
+        },
+        "from_": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "From"
+        },
+        "subject": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Subject"
+        },
+        "code_regex": {
+          "default": "\\b(\\d{6})\\b",
+          "title": "Code Regex",
+          "type": "string"
+        },
+        "timeout_s": {
+          "default": 60.0,
+          "title": "Timeout S",
+          "type": "number"
+        },
+        "poll_s": {
+          "default": 2.0,
+          "title": "Poll S",
+          "type": "number"
+        },
+        "folder": {
+          "default": "INBOX",
+          "title": "Folder",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "host",
+        "user_key",
+        "password_key"
+      ],
+      "title": "EmailFactor",
+      "type": "object"
+    },
+    "FileCheck": {
+      "additionalProperties": false,
+      "description": "A captured file must exist, start with `magic`, be >= `min_bytes`.",
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "magic": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Magic"
+        },
+        "min_bytes": {
+          "default": 1,
+          "title": "Min Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "FileCheck",
+      "type": "object"
+    },
+    "GuardRule": {
+      "additionalProperties": false,
+      "description": "Matches a clickable element by role/accessible name.",
+      "properties": {
+        "role": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Role"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "name_regex": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name Regex"
+        }
+      },
+      "title": "GuardRule",
+      "type": "object"
+    },
+    "HumanFactor": {
+      "additionalProperties": false,
+      "description": "The operator types the code (off unless explicitly enabled).",
+      "properties": {
+        "type": {
+          "const": "human",
+          "title": "Type",
+          "type": "string"
+        },
+        "timeout_s": {
+          "default": 300.0,
+          "title": "Timeout S",
+          "type": "number"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "HumanFactor",
+      "type": "object"
+    },
+    "IdempotencyCheck": {
+      "additionalProperties": false,
+      "description": "Look for the result of a side effect before performing it.",
+      "properties": {
+        "goto": {
+          "title": "Goto",
+          "type": "string"
+        },
+        "exists": {
+          "$ref": "#/$defs/LocatorSpec"
+        },
+        "on_exists": {
+          "const": "skip",
+          "default": "skip",
+          "title": "On Exists",
+          "type": "string"
+        }
+      },
+      "required": [
+        "goto",
+        "exists"
+      ],
+      "title": "IdempotencyCheck",
+      "type": "object"
+    },
+    "InputField": {
+      "additionalProperties": false,
+      "description": "Declared input; the run's inputs JSON is validated against these.",
+      "properties": {
+        "type": {
+          "default": "str",
+          "enum": [
+            "str",
+            "int",
+            "bool",
+            "date"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "required": {
+          "default": true,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "default": {
+          "default": null,
+          "title": "Default"
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pattern"
+        },
+        "sensitive": {
+          "default": false,
+          "title": "Sensitive",
+          "type": "boolean"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "placeholder": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Text that means 'not filled in yet' (e.g. OWNER); rejected with a hint.",
+          "title": "Placeholder"
+        }
+      },
+      "title": "InputField",
+      "type": "object"
+    },
+    "LocatorSpec": {
+      "additionalProperties": false,
+      "description": "Independent descriptions of one element, tried semantic to brittle.\n\nThe order of *strategies* is fixed by the resolver (role, label, near_text,\nstructure, css); a spec only supplies the descriptions it has.",
+      "properties": {
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Logical name, used in logs/manifest.",
+          "title": "Field"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "enum": [
+                "alert",
+                "alertdialog",
+                "application",
+                "article",
+                "banner",
+                "blockquote",
+                "button",
+                "caption",
+                "cell",
+                "checkbox",
+                "code",
+                "columnheader",
+                "combobox",
+                "complementary",
+                "contentinfo",
+                "definition",
+                "deletion",
+                "dialog",
+                "directory",
+                "document",
+                "emphasis",
+                "feed",
+                "figure",
+                "form",
+                "generic",
+                "grid",
+                "gridcell",
+                "group",
+                "heading",
+                "img",
+                "insertion",
+                "link",
+                "list",
+                "listbox",
+                "listitem",
+                "log",
+                "main",
+                "marquee",
+                "math",
+                "menu",
+                "menubar",
+                "menuitem",
+                "menuitemcheckbox",
+                "menuitemradio",
+                "meter",
+                "navigation",
+                "none",
+                "note",
+                "option",
+                "paragraph",
+                "presentation",
+                "progressbar",
+                "radio",
+                "radiogroup",
+                "region",
+                "row",
+                "rowgroup",
+                "rowheader",
+                "scrollbar",
+                "search",
+                "searchbox",
+                "separator",
+                "slider",
+                "spinbutton",
+                "status",
+                "strong",
+                "subscript",
+                "superscript",
+                "switch",
+                "tab",
+                "table",
+                "tablist",
+                "tabpanel",
+                "term",
+                "textbox",
+                "time",
+                "timer",
+                "toolbar",
+                "tooltip",
+                "tree",
+                "treegrid",
+                "treeitem"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Role"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "name_regex": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name Regex"
+        },
+        "exact": {
+          "default": false,
+          "title": "Exact",
+          "type": "boolean"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "near_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Near Text"
+        },
+        "within": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Within"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "tag": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tag"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Type"
+        },
+        "nth": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Nth"
+        },
+        "css": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Css",
+          "type": "array"
+        }
+      },
+      "title": "LocatorSpec",
+      "type": "object"
+    },
+    "MetaCheck": {
+      "additionalProperties": false,
+      "description": "`<meta name=...>` must equal a secret; compared by hash, never logged.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "equals_secret": {
+          "title": "Equals Secret",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "equals_secret"
+      ],
+      "title": "MetaCheck",
+      "type": "object"
+    },
+    "NoSecondFactor": {
+      "additionalProperties": false,
+      "description": "The portal asks for no code.",
+      "properties": {
+        "type": {
+          "const": "none",
+          "default": "none",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "title": "NoSecondFactor",
+      "type": "object"
+    },
+    "Postcondition": {
+      "additionalProperties": false,
+      "description": "What must be true after a stage.\n\nSuccess is decided here, not by \"no exception\".",
+      "properties": {
+        "url_matches": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url Matches"
+        },
+        "text_present": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text Present"
+        },
+        "element": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocatorSpec"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "read_back": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Read Back",
+          "type": "array"
+        },
+        "files": {
+          "items": {
+            "$ref": "#/$defs/FileCheck"
+          },
+          "title": "Files",
+          "type": "array"
+        }
+      },
+      "title": "Postcondition",
+      "type": "object"
+    },
+    "Redaction": {
+      "additionalProperties": false,
+      "description": "Recipe-declared sensitive things (PHI in production).",
+      "properties": {
+        "inputs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Inputs",
+          "type": "array"
+        },
+        "mask": {
+          "items": {
+            "$ref": "#/$defs/LocatorSpec"
+          },
+          "title": "Mask",
+          "type": "array"
+        },
+        "patterns": {
+          "description": "Regexes for account identifiers the portal prints that are not inputs or secrets (e.g. numeric user ids in avatar URLs).",
+          "items": {
+            "type": "string"
+          },
+          "title": "Patterns",
+          "type": "array"
+        }
+      },
+      "title": "Redaction",
+      "type": "object"
+    },
+    "Stage": {
+      "additionalProperties": false,
+      "description": "A checkpointed unit of work. One DBOS step; retried from `entry_url`.",
+      "properties": {
+        "key": {
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "title": "Key",
+          "type": "string"
+        },
+        "entry_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entry Url"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/Step"
+          },
+          "title": "Steps",
+          "type": "array"
+        },
+        "post": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Postcondition"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "side_effect": {
+          "default": false,
+          "title": "Side Effect",
+          "type": "boolean"
+        },
+        "idempotency_check": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/IdempotencyCheck"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "max_attempts": {
+          "default": 3,
+          "maximum": 5,
+          "minimum": 1,
+          "title": "Max Attempts",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "key"
+      ],
+      "title": "Stage",
+      "type": "object"
+    },
+    "Step": {
+      "additionalProperties": false,
+      "description": "One action. Written in YAML as a single-key mapping: `- click: {...}`.",
+      "properties": {
+        "action": {
+          "enum": [
+            "goto",
+            "click",
+            "fill",
+            "select",
+            "wait_for",
+            "download",
+            "print_pdf",
+            "switch_frame",
+            "switch_tab",
+            "assert_text",
+            "custom"
+          ],
+          "title": "Action",
+          "type": "string"
+        },
+        "params": {
+          "$ref": "#/$defs/StepParams"
+        }
+      },
+      "required": [
+        "action",
+        "params"
+      ],
+      "title": "Step",
+      "type": "object"
+    },
+    "StepParams": {
+      "additionalProperties": false,
+      "description": "Locator plus action-specific parameters.\n\nUnused keys are rejected per action.",
+      "properties": {
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Logical name, used in logs/manifest.",
+          "title": "Field"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "enum": [
+                "alert",
+                "alertdialog",
+                "application",
+                "article",
+                "banner",
+                "blockquote",
+                "button",
+                "caption",
+                "cell",
+                "checkbox",
+                "code",
+                "columnheader",
+                "combobox",
+                "complementary",
+                "contentinfo",
+                "definition",
+                "deletion",
+                "dialog",
+                "directory",
+                "document",
+                "emphasis",
+                "feed",
+                "figure",
+                "form",
+                "generic",
+                "grid",
+                "gridcell",
+                "group",
+                "heading",
+                "img",
+                "insertion",
+                "link",
+                "list",
+                "listbox",
+                "listitem",
+                "log",
+                "main",
+                "marquee",
+                "math",
+                "menu",
+                "menubar",
+                "menuitem",
+                "menuitemcheckbox",
+                "menuitemradio",
+                "meter",
+                "navigation",
+                "none",
+                "note",
+                "option",
+                "paragraph",
+                "presentation",
+                "progressbar",
+                "radio",
+                "radiogroup",
+                "region",
+                "row",
+                "rowgroup",
+                "rowheader",
+                "scrollbar",
+                "search",
+                "searchbox",
+                "separator",
+                "slider",
+                "spinbutton",
+                "status",
+                "strong",
+                "subscript",
+                "superscript",
+                "switch",
+                "tab",
+                "table",
+                "tablist",
+                "tabpanel",
+                "term",
+                "textbox",
+                "time",
+                "timer",
+                "toolbar",
+                "tooltip",
+                "tree",
+                "treegrid",
+                "treeitem"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Role"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "name_regex": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name Regex"
+        },
+        "exact": {
+          "default": false,
+          "title": "Exact",
+          "type": "boolean"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "near_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Near Text"
+        },
+        "within": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Within"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "tag": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tag"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Type"
+        },
+        "nth": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Nth"
+        },
+        "css": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Css",
+          "type": "array"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "save_as": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Save As"
+        },
+        "compare": {
+          "$ref": "#/$defs/CompareMode",
+          "default": "bytes"
+        },
+        "hook": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Hook"
+        },
+        "optional": {
+          "default": false,
+          "title": "Optional",
+          "type": "boolean"
+        },
+        "popup": {
+          "default": false,
+          "title": "Popup",
+          "type": "boolean"
+        },
+        "reload": {
+          "default": false,
+          "title": "Reload",
+          "type": "boolean"
+        },
+        "timeout_ms": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Timeout Ms"
+        }
+      },
+      "title": "StepParams",
+      "type": "object"
+    },
+    "TextMarker": {
+      "additionalProperties": false,
+      "description": "Text whose presence means something (e.g. the code was rejected).",
+      "properties": {
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "url_matches": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url Matches"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "TextMarker",
+      "type": "object"
+    },
+    "TotpFactor": {
+      "additionalProperties": false,
+      "description": "RFC 6238 codes from a base32 secret (`totp_bad_first`: mock only).",
+      "properties": {
+        "type": {
+          "enum": [
+            "totp",
+            "totp_bad_first"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "secret_key": {
+          "title": "Secret Key",
+          "type": "string"
+        },
+        "interval": {
+          "default": 30,
+          "title": "Interval",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "type",
+        "secret_key"
+      ],
+      "title": "TotpFactor",
+      "type": "object"
+    },
+    "Within": {
+      "additionalProperties": false,
+      "description": "Scope for the `structure` strategy: a container found by role/name.",
+      "properties": {
+        "role": {
+          "anyOf": [
+            {
+              "enum": [
+                "alert",
+                "alertdialog",
+                "application",
+                "article",
+                "banner",
+                "blockquote",
+                "button",
+                "caption",
+                "cell",
+                "checkbox",
+                "code",
+                "columnheader",
+                "combobox",
+                "complementary",
+                "contentinfo",
+                "definition",
+                "deletion",
+                "dialog",
+                "directory",
+                "document",
+                "emphasis",
+                "feed",
+                "figure",
+                "form",
+                "generic",
+                "grid",
+                "gridcell",
+                "group",
+                "heading",
+                "img",
+                "insertion",
+                "link",
+                "list",
+                "listbox",
+                "listitem",
+                "log",
+                "main",
+                "marquee",
+                "math",
+                "menu",
+                "menubar",
+                "menuitem",
+                "menuitemcheckbox",
+                "menuitemradio",
+                "meter",
+                "navigation",
+                "none",
+                "note",
+                "option",
+                "paragraph",
+                "presentation",
+                "progressbar",
+                "radio",
+                "radiogroup",
+                "region",
+                "row",
+                "rowgroup",
+                "rowheader",
+                "scrollbar",
+                "search",
+                "searchbox",
+                "separator",
+                "slider",
+                "spinbutton",
+                "status",
+                "strong",
+                "subscript",
+                "superscript",
+                "switch",
+                "tab",
+                "table",
+                "tablist",
+                "tabpanel",
+                "term",
+                "textbox",
+                "time",
+                "timer",
+                "toolbar",
+                "tooltip",
+                "tree",
+                "treegrid",
+                "treeitem"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Role"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "css": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Css"
+        }
+      },
+      "title": "Within",
+      "type": "object"
+    },
+    "WriteGuard": {
+      "additionalProperties": false,
+      "description": "Allow list wins; deny list blocks. Checked before every click.",
+      "properties": {
+        "allow": {
+          "items": {
+            "$ref": "#/$defs/GuardRule"
+          },
+          "title": "Allow",
+          "type": "array"
+        },
+        "deny": {
+          "items": {
+            "$ref": "#/$defs/GuardRule"
+          },
+          "title": "Deny",
+          "type": "array"
+        }
+      },
+      "title": "WriteGuard",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A portal recipe.",
+  "properties": {
+    "portal": {
+      "pattern": "^[a-z][a-z0-9_-]*$",
+      "title": "Portal",
+      "type": "string"
+    },
+    "version": {
+      "default": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "base_url": {
+      "title": "Base Url",
+      "type": "string"
+    },
+    "credential_id": {
+      "default": "default",
+      "title": "Credential Id",
+      "type": "string"
+    },
+    "inputs": {
+      "additionalProperties": {
+        "$ref": "#/$defs/InputField"
+      },
+      "title": "Inputs",
+      "type": "object"
+    },
+    "derived": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Extra template variables computed from inputs, e.g. repo_name.",
+      "title": "Derived",
+      "type": "object"
+    },
+    "auth": {
+      "$ref": "#/$defs/Auth"
+    },
+    "write_guard": {
+      "$ref": "#/$defs/WriteGuard",
+      "default": {
+        "allow": [],
+        "deny": []
+      }
+    },
+    "redaction": {
+      "$ref": "#/$defs/Redaction",
+      "default": {
+        "inputs": [],
+        "mask": [],
+        "patterns": []
+      }
+    },
+    "captcha_selectors": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Captcha Selectors",
+      "type": "array"
+    },
+    "stages": {
+      "items": {
+        "$ref": "#/$defs/Stage"
+      },
+      "title": "Stages",
+      "type": "array"
+    }
+  },
+  "required": [
+    "portal",
+    "base_url",
+    "auth",
+    "stages"
+  ],
+  "title": "Recipe",
+  "type": "object"
+}

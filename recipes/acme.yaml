@@ -1,0 +1,179 @@
+# Acme Payer: the mock payer portal (test infrastructure, see mock_portal/).
+# Different auth (emailed code), an iframe and a new tab: same engine, zero
+# code change.
+portal: acme
+version: 1
+base_url: http://127.0.0.1:8080
+credential_id: default
+
+inputs:
+  member_query: { description: "Text typed into member search" }
+  member_name: { description: "Link text of the member in the results" }
+  member_id: { sensitive: true, pattern: "^M-\\d{4}$" }
+  plan: {}
+  service_type: {}
+  date_of_service: { type: date, pattern: "^\\d{4}-\\d{2}-\\d{2}$" }
+  note: { description: "Visit note saved on the member (the one write)" }
+
+auth:
+  flow: password
+  login_url: "{{ base_url }}/login"
+  secrets: { username: ACME_USERNAME, password: ACME_PASSWORD }
+  second_factor:
+    type: email
+    host: 127.0.0.1
+    port: 3143
+    ssl: false
+    user_key: ACME_IMAP_USER
+    password_key: ACME_IMAP_PASSWORD
+    from_: noreply@acme-payer.test
+    subject: verification code
+    code_regex: "code is (\\d{6})"
+    timeout_s: 30
+    poll_s: 1
+  fields:
+    username:
+      role: textbox
+      name: Username
+      label: Username
+      near_text: Username
+      css: ["#username", "input[name=username]"]
+    password:
+      label: Password
+      near_text: Password
+      css: ["#password", "input[type=password]"]
+    submit:
+      role: button
+      name: Sign in
+      within: { css: form }
+      tag: button
+      css: ["button[type=submit]"]
+    otp:
+      role: textbox
+      name: Verification code
+      label: Verification code
+      css: ["#code", "input[autocomplete=one-time-code]"]
+    otp_submit:
+      role: button
+      name: Verify
+      css: ["form button[type=submit]"]
+  otp_url_matches: "/mfa"
+  otp_entry_url: "{{ base_url }}/mfa"
+  code_rejected: { text: Incorrect verification code }
+  bad_credentials: { text: Invalid username or password }
+  alive_check:
+    url: "{{ base_url }}/members"
+    meta: { name: member-login, equals_secret: ACME_USERNAME }
+    element: { role: link, name: Sign out, css: ["a[href='/logout']"] }
+
+write_guard:
+  allow: [{ role: button, name: Save note }]  # the only permitted write
+  deny: [{ name_regex: "(?i)delete|cancel|submit claim" }]
+
+redaction:
+  inputs: [member_id, member_name]  # PHI in a real payer portal
+  mask: [{ css: [".member-id", ".dob"] }]
+
+stages:
+  - key: search_member
+    entry_url: "{{ base_url }}/members"
+    steps:
+      - fill:
+          field: member_search
+          value: "{{ member_query }}"
+          role: textbox
+          name: Member search
+          label: Member search
+          css: ["#q", "input[name=q]"]
+      - click:
+          role: button
+          name: Search
+          css: ["form[role=search] button"]
+    post: { text_present: "{{ member_name }}" }
+
+  - key: open_member
+    steps:
+      - click:
+          field: member_link
+          role: link
+          name: "{{ member_name }}"
+          css: ["table.results a"]
+    post: { url_matches: "/members/M-\\d+$" }
+
+  - key: save_note
+    side_effect: true  # never auto-retried after the click
+    # Runs first (also on resume): reuse an existing note.
+    idempotency_check:
+      goto: "{{ base_url }}/members/{{ member_id }}"
+      exists: { css: ["ul.notes li:text-is('{{ note }}')"] }
+    entry_url: "{{ base_url }}/members/{{ member_id }}"
+    steps:
+      - fill:
+          field: note
+          value: "{{ note }}"
+          role: textbox
+          name: Note
+          label: Note
+          css: ["#note"]
+      - click:
+          role: button
+          name: Save note
+          css: ["form.note-form button[type=submit]"]
+    post: { url_matches: "/members/M-\\d+$", text_present: "{{ note }}" }
+
+  - key: open_eligibility
+    steps:
+      - click: { role: link, name: Check eligibility, css: ["a.btn-elig"] }
+    post: { url_matches: "/eligibility\\?member=" }
+
+  - key: fill_eligibility
+    entry_url: "{{ base_url }}/eligibility?member={{ member_id }}"
+    steps:
+      - select:
+          field: plan
+          value: "{{ plan }}"
+          role: combobox
+          name: Plan
+          label: Plan
+          near_text: Plan
+          css: ["#plan", "select[name=plan]"]
+      - select:  # dependent: enabled by plan
+          field: service_type
+          value: "{{ service_type }}"
+          role: combobox
+          name: Service type
+          label: Service type
+          near_text: Service type
+          css: ["#service_type", "select[name=service_type]"]
+      - fill:
+          field: date_of_service
+          value: "{{ date_of_service }}"
+          label: Date of service
+          near_text: Date of service
+          css: ["#dos", "input[name=dos]"]
+    post: { read_back: [plan, service_type, date_of_service] }
+
+  - key: submit_eligibility
+    steps:
+      - click:
+          field: check
+          role: button
+          name: Check eligibility
+          within: { role: form, name: Eligibility }
+          tag: button
+          css: ["button.btn-check"]
+    post: { url_matches: "/eligibility/result", text_present: Active }
+
+  - key: capture_statement
+    steps:
+      - download:
+          field: statement
+          role: link
+          name: Download statement
+          save_as: "statement-{{ date_of_service }}.pdf"
+          css: ["a[download]"]
+    post:
+      files:
+        - path: "statement-{{ date_of_service }}.pdf"
+          magic: "%PDF"
+          min_bytes: 500
