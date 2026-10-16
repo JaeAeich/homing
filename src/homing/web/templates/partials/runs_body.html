@@ -1,0 +1,70 @@
+{% from "macros.html" import status with context %}
+{% set poll = url_for('runs').include_query_params(tab=tab, q=q, since=now) %}
+<div id="runs-body"
+     hx-get="{{ poll }}"
+     hx-trigger="every 3s"
+     hx-target="this"
+     hx-swap="outerHTML">
+  <div class="box">
+    {% if rows %}
+      <table class="list">
+        <colgroup>
+          <col class="c-status">
+          <col class="c-run">
+          <col class="c-stages">
+          <col>
+          <col class="c-num">
+          <col class="c-when">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Run</th>
+            <th>Stages</th>
+            <th>Result</th>
+            <th class="r">Duration</th>
+            <th class="r">Started</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+            {% set href = url_for('run_detail', run_id=r.run_id) %}
+            <tr onclick="location.href='{{ href }}'">
+              <td>{{ status(r.status) }}</td>
+              <td>
+                <a href="{{ href }}" class="plain">{{ r.title }}</a>
+                <span class="sub">{{ r.run_id }}</span>
+              </td>
+              <td>
+                <span class="segs" aria-hidden="true">
+                  {% for s in r.segments %}<i class="{{ s }}"></i>{% endfor %}
+                </span>
+              </td>
+              <td class="m2">{{ r.result }}</td>
+              <td class="r m2">{{ r.duration_ms | duration }}</td>
+              <td class="r m">{{ r.started_at | ago }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="empty">
+        {% if tab == Tab.ATTENTION %}
+          <b>Nothing needs attention</b>
+          Every run in the last 24 hours finished, or a later run fixed it.
+        {% elif tab == Tab.RUNNING %}
+          <b>Nothing running</b>
+          Start one with New run, or from the CLI with
+          <code>homing run</code>.
+        {% else %}
+          <b>No runs yet</b>
+          Start one with New run, or from the CLI with
+          <code>homing run</code>.
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% for t in toasts %}
+  {% include "partials/run_toast.html" %}
+{% endfor %}

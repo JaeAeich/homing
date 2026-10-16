@@ -1,0 +1,16 @@
+{# Icons live in static/icons.svg; import these macros "with context". #}
+{% macro icon(name) -%}
+  <svg class="i" viewBox="0 0 24 24">
+    <use href="{{ url_for('static', path='icons.svg') }}#{{ name }}" />
+  </svg>
+{%- endmacro %}
+{# Status: a coloured dot always paired with a word, never colour alone. #}
+{% macro dot(tone) -%}
+  <span class="dot {{ tone }}" aria-hidden="true"></span>
+{%- endmacro %}
+{% macro status(tone) -%}
+  <span class="status">{{ dot(tone) }}{{ tone.label }}</span>
+{%- endmacro %}
+{% macro file_url(run_id, folder, name) -%}
+  {{ url_for("run_file", run_id=run_id, folder=folder, name=name) }}
+{%- endmacro %}

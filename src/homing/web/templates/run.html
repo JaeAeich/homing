@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% set active = "runs" %}
+{% block title %}{{ run.title }} · homing{% endblock %}
+{% block main %}
+  <a class="crumb" href="{{ url_for('runs') }}">Runs</a>
+  {% include "partials/run_body.html" %}
+{% endblock %}
+{% block overlay %}
+  <div class="scrim" data-close-panel></div>
+  <aside id="stage-panel" class="panel" aria-label="Stage details">
+  </aside>
+{% endblock %}

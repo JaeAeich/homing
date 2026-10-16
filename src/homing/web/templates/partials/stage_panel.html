@@ -1,0 +1,83 @@
+{% from "macros.html" import dot, file_url with context %}
+<div class="ph">
+  {% if panel %}{{ dot(panel.tone) }}{% endif %}
+  <h2>{{ panel.label if panel else key }}</h2>
+  <button type="button" class="x" data-close-panel aria-label="Close">×</button>
+</div>
+{% if not panel %}
+  <p class="msg m2">Details appear here once the run finishes.</p>
+{% else %}
+  <section>
+    <h3 class="label">Outcome</h3>
+    <p class="msg">
+      {{ panel.outcome }}
+      {% if panel.code %}<code>{{ panel.code }}</code>{% endif %}
+    </p>
+  </section>
+  <section {% if not panel.hints %}hidden{% endif %}>
+    <h3 class="label">How to fix</h3>
+    <ol class="steps">
+      {% for h in panel.hints %}
+        <li>
+          {{ h.text }}
+          {% if h.command %}
+            <div class="cmd">
+              <span>{{ h.command }}</span>
+              <button type="button" data-copy="{{ h.command }}">Copy</button>
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+  <section>
+    <h3 class="label">Attempts</h3>
+    <table class="lines">
+      {% for a in panel.attempts %}
+        <tr>
+          <td>{{ a.number }} · {{ a.text }}</td>
+          <td class="m">{{ a.outcome }}</td>
+        </tr>
+      {% else %}
+        <tr>
+          <td class="m">None</td>
+          <td></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </section>
+  <section>
+    <h3 class="label">Locators</h3>
+    <table class="lines">
+      {% for l in panel.locators %}
+        <tr>
+          <td>
+            {{ l.strategy }} · <span class="mono">{{ l.query }}</span>
+          </td>
+          <td class="m">{{ l.result }}</td>
+        </tr>
+      {% else %}
+        <tr>
+          <td class="m">None</td>
+          <td></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </section>
+  <section {% if not panel.evidence %}hidden{% endif %}>
+    <h3 class="label">Evidence</h3>
+    {% if EvidenceFile.SCREENSHOT in panel.evidence %}
+      {% set png = EvidenceFile.SCREENSHOT %}
+      {% set shot = file_url(run_id, RunFolder.EVIDENCE, png) %}
+      <a href="{{ shot }}" target="_blank">
+        <img class="shot" src="{{ shot }}" alt="Page when the stage failed">
+      </a>
+    {% endif %}
+    <div class="ev">
+      {% for e in panel.evidence %}
+        {% set url = file_url(run_id, RunFolder.EVIDENCE, e) %}
+        <a class="link" href="{{ url }}" target="_blank">{{ e }}</a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

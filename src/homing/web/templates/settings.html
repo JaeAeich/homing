@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% set active = "settings" %}
+{% block title %}Settings · homing{% endblock %}
+{% block main %}
+  <div class="head">
+    <h1>Settings</h1>
+  </div>
+  <div class="settings">
+    <section>
+      <h2 class="label">Storage · read from the environment or .env</h2>
+      <dl class="kv">
+        <dt>Home</dt>
+        <dd class="mono">
+          {{ settings.homing_home.resolve() }}
+        </dd>
+        <dt>Runs</dt>
+        <dd class="mono">
+          {{ settings.runs_dir.resolve() }}
+        </dd>
+        <dt>Sessions</dt>
+        <dd class="mono">
+          {{ settings.state_dir.resolve() }}
+        </dd>
+        <dt>Database</dt>
+        <dd>
+          {{ db }} <span class="m">(DBOS)</span>
+        </dd>
+        <dt>Recipes</dt>
+        <dd class="mono">
+          {{ settings.recipes_dir.resolve() }}
+        </dd>
+      </dl>
+    </section>
+    <section>
+      <h2 class="label">Sessions · encrypted at rest</h2>
+      <dl class="kv">
+        {% for s in sessions %}
+          <dt>{{ s.portal }} · {{ s.credential }}</dt>
+          <dd>
+            {{ s.label }}
+          </dd>
+        {% else %}
+          <dt>None yet</dt>
+          <dd>
+            —
+          </dd>
+        {% endfor %}
+      </dl>
+    </section>
+    <section>
+      <h2 class="label">Limits</h2>
+      <dl class="kv">
+        <dt>Per action</dt>
+        <dd>
+          {{ settings.action_timeout_ms / 1000 }}s
+        </dd>
+        <dt>Per stage</dt>
+        <dd>
+          {{ settings.stage_timeout_s }}s
+        </dd>
+        <dt>Per run</dt>
+        <dd>
+          {{ settings.run_timeout_s }}s
+        </dd>
+      </dl>
+    </section>
+  </div>
+{% endblock %}

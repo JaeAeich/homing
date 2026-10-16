@@ -1,0 +1,153 @@
+{% from "macros.html" import dot, status, file_url with context %}
+{% set poll = url_for("run_detail", run_id=run.run_id) %}
+<div id="run-body"
+     {% if run.live %}hx-get="{{ poll }}"{% endif %}
+     {% if run.live %}hx-trigger="every 2s"{% endif %}
+     {% if run.live %}hx-target="this"{% endif %}
+     {% if run.live %}hx-swap="outerHTML"{% endif %}>
+  <div class="head">
+    <h1>{{ run.title }}</h1>
+    <span class="grow"></span>
+    <button type="button"
+            class="btn"
+            data-variant="outline"
+            {% if run.live %}disabled{% endif %}
+            onclick="document.getElementById('fork-dialog').showModal()">
+      Fork…
+    </button>
+    {% set why = "" if run.resumable else "Nothing to resume" %}
+    <button type="button"
+            class="btn"
+            title="{{ why }}"
+            {% if not run.resumable %}disabled{% endif %}
+            hx-post="{{ url_for('resume', run_id=run.run_id) }}">Resume</button>
+  </div>
+  <dl class="facts">
+    <div>
+      <dt>Status</dt>
+      <dd>
+        {{ status(run.status) }}
+      </dd>
+    </div>
+    <div>
+      <dt>Duration</dt>
+      <dd>
+        {{ run.duration_ms | duration }}
+      </dd>
+    </div>
+    <div>
+      <dt>Session</dt>
+      <dd>
+        {{ run.session }}
+      </dd>
+    </div>
+    <div>
+      <dt>Started</dt>
+      <dd>
+        {{ run.started_at | ago }}
+      </dd>
+    </div>
+  </dl>
+  <div class="cols">
+    <section>
+      <h2 class="label">Stages</h2>
+      <div class="box stages">
+        {% for s in run.stages %}
+          {% set url = url_for("stage_detail", run_id=run.run_id, key=s.key) %}
+          <button type="button"
+                  class="stage {{ s.tone }}"
+                  hx-get="{{ url }}"
+                  hx-target="#stage-panel">
+            {{ dot(s.tone) }}
+            <span class="nm">{{ s.label }}</span>
+            <span class="note">{{ s.note }}</span>
+            <span class="track">
+              {% if s.offset_ms is not none %}
+                {# Position and width are this run's timings: inline only. #}
+                {% set left = (s.offset_ms / run.total_ms * 100) | round(2) %}
+                {% set width = s.duration_ms / run.total_ms * 100 %}
+                {% set width = width | round(2) %}
+                {# djlint:off H021 #}
+                <span class="bar {{ s.tone }}"
+                      style="left:{{ left }}%;
+                             width:{{ width }}%"></span>
+                {# djlint:on #}
+              {% endif %}
+            </span>
+            <span class="d">{{ s.duration_ms | duration }}</span>
+          </button>
+        {% endfor %}
+      </div>
+    </section>
+    <aside>
+      <h2 class="label">Details</h2>
+      <dl class="kv">
+        <dt>Run ID</dt>
+        <dd class="mono" title="{{ run.run_id }}">
+          {{ run.run_id }}
+        </dd>
+        <dt>Recipe</dt>
+        <dd>
+          {{ run.recipe }}
+        </dd>
+        <dt>Inputs</dt>
+        <dd>
+          {{ run.inputs }}
+        </dd>
+        <dt>Forked from</dt>
+        <dd>
+          {% if run.forked_from %}
+            <a class="link mono"
+               href="{{ url_for('run_detail', run_id=run.forked_from) }}">
+              {{ run.forked_from }}
+            </a>
+          {% else %}
+            —
+          {% endif %}
+        </dd>
+      </dl>
+      <h2 class="label">Files</h2>
+      <div class="files">
+        {% for f in run.files %}
+          {% set url = file_url(run.run_id, RunFolder.FILES, f.name) %}
+          <a href="{{ url }}" target="_blank">
+            <span>{{ f.name }}</span>
+            <span class="mono m">{{ f.sha256[:8] }}</span>
+          </a>
+        {% else %}
+          <div class="none">No files captured</div>
+        {% endfor %}
+      </div>
+    </aside>
+  </div>
+  <dialog id="fork-dialog"
+          class="dialog"
+          aria-labelledby="fork-title"
+          onclick="if (event.target === this) this.close()">
+    <div>
+      <header>
+        <h2 id="fork-title">Fork from a stage</h2>
+        <p>Starts a new run that reuses everything before this stage.</p>
+      </header>
+      <form hx-post="{{ url_for('fork', run_id=run.run_id) }}">
+        <section>
+          <select name="stage" class="select w-full">
+            {% for s in run.stages[1:] %}
+              {% set picked = s.key == run.failed_stage %}
+              <option value="{{ s.key }}" {% if picked %}selected{% endif %}>
+                {{ s.key }}
+              </option>
+            {% endfor %}
+          </select>
+        </section>
+        <footer>
+          <button type="button"
+                  class="btn"
+                  data-variant="outline"
+                  onclick="this.closest('dialog').close()">Cancel</button>
+          <button type="submit" class="btn">Fork</button>
+        </footer>
+      </form>
+    </div>
+  </dialog>
+</div>

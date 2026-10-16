@@ -1,0 +1,86 @@
+{% extends "base.html" %}{% from "macros.html" import icon with context %}
+{% set active = "runs" %}
+{% block title %}Runs · homing{% endblock %}
+{% block main %}
+  <div class="head">
+    <h1>Runs</h1>
+    <span class="grow"></span>
+    <button type="button"
+            class="btn"
+            onclick="document.getElementById('new-run').showModal()">
+      New run
+    </button>
+  </div>
+  <div class="tabbar">
+    {% for key in Tab %}
+      <a class="tab {{ 'on' if tab == key }}"
+         href="{{ url_for('runs').include_query_params(tab=key) }}">
+        {{ key.label }}
+        {% set bad = "bad" if key == Tab.ATTENTION and counts[key] %}
+        <span class="c {{ bad }}">{{ counts[key] }}</span>
+      </a>
+    {% endfor %}
+    <span class="meta">
+      {% if stats.success_rate is not none %}
+        {% set rate = (stats.success_rate * 100) | round | int %}
+        {{ rate }}% succeeded · median {{ stats.median_ms | duration }}
+        · last 24 h
+      {% else %}
+        No runs in the last 24 h
+      {% endif %}
+    </span>
+  </div>
+  {% include "partials/runs_body.html" %}
+  <dialog id="new-run"
+          class="dialog"
+          aria-labelledby="new-run-title"
+          onclick="if (event.target === this) this.close()">
+    <div>
+      <header>
+        <h2 id="new-run-title">New run</h2>
+        <p>Pick a recipe and the inputs to run it with.</p>
+      </header>
+      <form hx-post="{{ url_for('new_run') }}"
+            hx-target="#toaster"
+            hx-swap="beforeend"
+            id="new-run-form">
+        <section>
+          <div role="group" class="field">
+            <label for="nr-recipe">Recipe</label>
+            <select id="nr-recipe" name="recipe" class="select w-full">
+              {% for r in recipes %}
+                <option value="{{ r.name }}">{{ r.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div role="group" class="field">
+            <label for="nr-inputs">Inputs</label>
+            <select id="nr-inputs" name="inputs" class="select w-full">
+              {% for r in recipes %}
+                {% for i in r.inputs %}
+                  <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+              {% endfor %}
+            </select>
+          </div>
+          <div role="group" class="field">
+            <label for="nr-base">
+              Base URL <span class="muted">(optional)</span>
+            </label>
+            <input id="nr-base"
+                   name="base_url"
+                   class="input"
+                   placeholder="https://github.com">
+          </div>
+        </section>
+        <footer>
+          <button type="button"
+                  class="btn"
+                  data-variant="outline"
+                  onclick="this.closest('dialog').close()">Cancel</button>
+          <button type="submit" class="btn">{{ icon("play") }}Start run</button>
+        </footer>
+      </form>
+    </div>
+  </dialog>
+{% endblock %}

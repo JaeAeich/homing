@@ -1,0 +1,48 @@
+{% from "macros.html" import icon with context %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}homing{% endblock %}</title>
+    <link rel="icon"
+          type="image/svg+xml"
+          href="{{ url_for('static', path='logo.svg') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='vendor/basecoat.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='app.css') }}">
+    <script src="{{ url_for('static', path='vendor/htmx.min.js') }}"
+            defer></script>
+    <script src="{{ url_for('static', path='vendor/basecoat.min.js') }}"
+            defer></script>
+    <script src="{{ url_for('static', path='app.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="side">
+        <a class="brand" href="{{ url_for('runs') }}">
+          <img src="{{ url_for('static', path='logo.svg') }}"
+               alt=""
+               width="22"
+               height="22">
+          homing
+        </a>
+        {% set attention = attention_count() %}
+        <a class="nav {{ 'on' if active == 'runs' }}"
+           href="{{ url_for('runs') }}">
+          {{ icon("runs") }}Runs
+          {% if attention %}
+            <span class="n" title="Needs attention">{{ attention }}</span>
+          {% endif %}
+        </a>
+        <a class="nav {{ 'on' if active == 'settings' }}"
+           href="{{ url_for('settings_page') }}">{{ icon("gear") }}Settings</a>
+        <div class="foot">v{{ version }}</div>
+      </aside>
+      <main class="main">
+        {% block main %}{% endblock %}
+      </main>
+    </div>
+    {% block overlay %}{% endblock %}
+    <div id="toaster" class="toaster" data-align="end"></div>
+  </body>
+</html>

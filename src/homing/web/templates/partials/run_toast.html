@@ -1,0 +1,22 @@
+{% set failed = t.status == Tone.FAILED %}
+{% set title = "Run failed" if failed else "Run finished" %}
+<div hx-swap-oob="beforeend:#toaster">
+  <div class="toast"
+       role="status"
+       aria-atomic="true"
+       aria-hidden="false"
+       data-category="{{ 'error' if failed else 'success' }}"
+       data-duration="{{ '-1' if failed else '5000' }}">
+    <div class="toast-content">
+      <section>
+        <h2>{{ title }} · {{ t.portal }}</h2>
+        <p>{{ t.result }}</p>
+      </section>
+      <footer>
+        <a class="btn"
+           data-variant="outline"
+           href="{{ url_for('run_detail', run_id=t.run_id) }}">View run</a>
+      </footer>
+    </div>
+  </div>
+</div>
