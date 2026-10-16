@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block main %}
+  <h1>Members</h1>
+  <form method="get" action="/members" role="search">
+    <label for="q">Member search</label><input id="q" name="q" value="{{ q }}">
+    <button type="submit">Search</button>
+  </form>
+  {% if q %}
+    <table class="results">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Member ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in results %}
+          <tr>
+            <td>
+              <a href="/members/{{ m.id }}">{{ m.name }}</a>
+            </td>
+            <td>{{ m.id }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if not results %}<p>No members found.</p>{% endif %}
+  {% endif %}
+{% endblock %}

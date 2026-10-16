@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block main %}
+  <h1>Eligibility result</h1>
+  <p class="status">{{ m.name }}: <strong>Active</strong></p>
+  <dl>
+    <dt>Plan</dt>
+    <dd>
+      {{ plan }}
+    </dd>
+    <dt>Service type</dt>
+    <dd>
+      {{ service }}
+    </dd>
+    <dt>Date of service</dt>
+    <dd>
+      {{ dos }}
+    </dd>
+    <dt>Copay</dt>
+    <dd>
+      {{ copay }}
+    </dd>
+  </dl>
+  {% if statement == StatementMode.NEW_TAB %}
+    <a href="/statement/{{ m.id }}/view?{{ query }}"
+       target="_blank"
+       rel="noopener">View statement</a>
+  {% else %}
+    <a href="/statement/{{ m.id }}.pdf?{{ query }}"
+       download>Download statement</a>
+  {% endif %}
+{% endblock %}

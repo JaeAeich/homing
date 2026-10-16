@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block main %}
+  <h1>{{ m.name }}</h1>
+  <dl>
+    <dt>Member ID</dt>
+    <dd class="member-id">
+      {{ m.id }}
+    </dd>
+    <dt>Date of birth</dt>
+    <dd class="dob">
+      {{ m.dob }}
+    </dd>
+  </dl>
+  <a href="/eligibility?member={{ m.id }}"
+     class="btn-elig">Check eligibility</a>
+  <section aria-label="Notes">
+    <h2>Notes</h2>
+    <ul class="notes">{% for n in notes %}<li>{{ n }}</li>{% endfor %}</ul>
+    <form method="post" action="/members/{{ m.id }}/notes" class="note-form">
+      <input type="hidden" name="authenticity_token" value="{{ csrf }}">
+      <label for="note">Note</label><textarea id="note" name="note"></textarea>
+      <button type="submit">Save note</button>
+      <button type="submit"
+              formaction="/members/{{ m.id }}/delete">Delete member</button>
+    </form>
+  </section>
+{% endblock %}

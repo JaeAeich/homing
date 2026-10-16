@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block main %}
+  <h1>Eligibility for {{ m.name }}</h1>
+  {% if layout == Layout.IFRAME %}
+    <iframe name="eligibility-frame"
+            title="Eligibility form"
+            src="/eligibility/frame?member={{ m.id }}"
+            style="width:600px;
+                   height:320px;
+                   border:1px solid #ccc"></iframe>
+  {% else %}
+    {% include "eligibility_form.html" %}
+  {% endif %}
+{% endblock %}

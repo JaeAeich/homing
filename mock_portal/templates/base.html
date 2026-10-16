@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }} · Acme Payer</title>
+    <meta name="csrf-token" content="{{ csrf }}">
+    {% if user %}<meta name="member-login" content="{{ user }}">{% endif %}
+    <style>
+      body { font-family: sans-serif; margin: 2rem }
+      .flash { color: #b00 }
+      label { display: block; margin-top: .6rem }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <strong>Acme Payer</strong>
+      {% if user %}
+        <span class="who">Signed in as {{ user }}</span>
+        <a href="/logout">Sign out</a>
+      {% else %}
+        <span class="who">Welcome, guest</span>
+      {% endif %}
+    </header>
+    <main>
+      {% block main %}{% endblock %}
+    </main>
+  </body>
+</html>

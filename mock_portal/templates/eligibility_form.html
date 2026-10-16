@@ -1,0 +1,61 @@
+<form method="get"
+      action="/eligibility/result"
+      target="_top"
+      class="elig-form"
+      aria-label="Eligibility">
+  <input type="hidden" name="member" value="{{ m.id }}">
+  {% if layout == Layout.V2 %}
+    <div class="grid">
+      <div class="g1">
+        <span class="lbl">Date of service</span><input class="d-x"
+       name="dos"
+       type="date">
+      </div>
+    </div>
+    <div class="grid">
+      <div class="g1">
+        <span class="lbl">Plan</span>
+        <select class="s-x" name="plan">
+          {% for p in plans %}
+            <option value="{{ p }}">{{ p or "Choose a plan" }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="g1">
+        <span class="lbl">Service type</span><select class="s-y"
+        name="service_type"
+        disabled></select>
+      </div>
+    </div>
+    <div class="grid">
+      <button class="b-x" type="submit">Look up</button>
+    </div>
+  {% else %}
+    <label for="plan">Plan</label>
+    <select id="plan" name="plan" class="plan-select">
+      {% for p in plans %}
+        <option value="{{ p }}">{{ p or "Choose a plan" }}</option>
+      {% endfor %}
+    </select>
+    <label for="service_type">Service type</label><select id="service_type"
+        name="service_type"
+        disabled></select>
+    <label for="dos">Date of service</label><input id="dos"
+       name="dos"
+       type="date">
+    <button type="submit" class="btn-check">Check eligibility</button>
+  {% endif %}
+</form>
+<script>
+const services = {{ services | tojson }};
+const form = document.querySelector('.elig-form');
+const plan = form.querySelector('[name=plan]');
+const st = form.querySelector('[name=service_type]');
+plan.addEventListener('change', () => {
+  st.innerHTML = '';
+  (services[plan.value] || []).forEach(s => st.add(new Option(s, s)));
+  st.disabled = !plan.value;
+});
+</script>
