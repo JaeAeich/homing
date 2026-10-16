@@ -1,0 +1,9 @@
+{
+  "member_query": "Jane",
+  "member_name": "Jane Example",
+  "member_id": "M-1001",
+  "plan": "PPO Gold",
+  "service_type": "Physical therapy",
+  "date_of_service": "2026-11-02",
+  "note": "Benefits verified by homing"
+}

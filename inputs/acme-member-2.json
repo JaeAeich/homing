@@ -1,0 +1,9 @@
+{
+  "member_query": "John",
+  "member_name": "John Sample",
+  "member_id": "M-1002",
+  "plan": "HMO Silver",
+  "service_type": "Lab work",
+  "date_of_service": "2026-11-05",
+  "note": "Lab benefits checked by homing"
+}
