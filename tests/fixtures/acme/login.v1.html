@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>t · Acme Payer</title>
+<meta name="csrf-token" content="[REDACTED]">
+<meta name="member-login" content="[REDACTED]">
+<style>body{font-family:sans-serif;margin:2rem}.flash{color:#b00}label{display:block;margin-top:.6rem}</style>
+</head><body>
+<header class="topbar"><strong>Acme Payer</strong>
+<span class="who">Signed in as [REDACTED]</span> <a href="/logout">Sign out</a>
+
+</header>
+<main>
+<h1>Sign in to Acme Payer</h1>
+
+
+
+<form method="post" action="/login" class="login-form">
+  <input type="hidden" name="authenticity_token" value="[REDACTED]">
+  <label for="username">Username</label><input id="username" name="username" type="text" class="form-control">
+  <label for="password">Password</label><input id="password" name="password" type="password" class="form-control">
+  <button type="submit" class="btn-primary">Sign in</button>
+</form>
+</main></body></html>

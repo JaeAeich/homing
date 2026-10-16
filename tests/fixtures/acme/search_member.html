@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Members · Acme Payer</title>
+<meta content="[REDACTED]" name="csrf-token"/>
+<meta content="[REDACTED_ACME_USERNAME]" name="member-login"/>
+<style>body{font-family:sans-serif;margin:2rem}.flash{color:#b00}label{display:block;margin-top:.6rem}</style>
+</head><body>
+<header class="topbar"><strong>Acme Payer</strong>
+<span class="who">Signed in as [REDACTED_ACME_USERNAME]</span> <a href="/logout">Sign out</a>
+</header>
+<main>
+<h1>Members</h1>
+<form action="/members" method="get" role="search">
+<label for="q">Member search</label><input id="q" name="q" value="Jane"/>
+<button type="submit">Search</button>
+</form>
+<table class="results"><thead><tr><th>Name</th><th>Member ID</th></tr></thead><tbody>
+<tr><td><a href="/members/[REDACTED_MEMBER_ID]">Jane Example</a></td><td>[REDACTED_MEMBER_ID]</td></tr>
+</tbody></table>
+</main></body></html>

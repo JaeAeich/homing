@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Jane Example · Acme Payer</title>
+<meta content="[REDACTED]" name="csrf-token"/>
+<meta content="[REDACTED_ACME_USERNAME]" name="member-login"/>
+<style>body{font-family:sans-serif;margin:2rem}.flash{color:#b00}label{display:block;margin-top:.6rem}</style>
+</head><body>
+<header class="topbar"><strong>Acme Payer</strong>
+<span class="who">Signed in as [REDACTED_ACME_USERNAME]</span> <a href="/logout">Sign out</a>
+</header>
+<main>
+<h1>Jane Example</h1>
+<dl><dt>Member ID</dt><dd class="member-id">[REDACTED_MEMBER_ID]</dd><dt>Date of birth</dt><dd class="dob">1980-02-14</dd></dl>
+<a class="btn-elig" href="/eligibility?member=[REDACTED_MEMBER_ID]">Check eligibility</a>
+<section aria-label="Notes">
+<h2>Notes</h2>
+<ul class="notes"></ul>
+<form action="/members/[REDACTED_MEMBER_ID]/notes" class="note-form" method="post">
+<input name="authenticity_token" type="hidden" value="[REDACTED]"/>
+<label for="note">Note</label><textarea id="note" name="note"></textarea>
+<button type="submit">Save note</button>
+<button formaction="/members/[REDACTED_MEMBER_ID]/delete" type="submit">Delete member</button>
+</form>
+</section>
+</main></body></html>

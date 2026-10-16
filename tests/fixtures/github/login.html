@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html class="html-auth" data-a11y-animated-images="system" data-a11y-link-underlines="true" data-color-mode="auto" data-dark-theme="dark" data-light-theme="light" data-turbo-loaded="" lang="en"><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style>
+<meta charset="utf-8"/>
+<link href="https://github.githubassets.com" rel="dns-prefetch"/>
+<link href="https://avatars.githubusercontent.com" rel="dns-prefetch"/>
+<link href="https://github-cloud.s3.amazonaws.com" rel="dns-prefetch"/>
+<link href="https://user-images.githubusercontent.com/" rel="dns-prefetch"/>
+<link crossorigin="" href="https://github.githubassets.com" rel="preconnect"/>
+<link href="https://avatars.githubusercontent.com" rel="preconnect"/>
+<script type="importmap">/* [REDACTED script] */</script>
+<meta content="0" data-turbo-transient="true" name="react-profiling"/>
+<meta content="react,react-dom,react-dom/client,react-dom/profiling,react-is,react-reconciler,react/compiler-runtime,react/jsx-dev-runtime,react/jsx-runtime,scheduler@777f63f87cd0" data-turbo-track="reload" name="react-import-map"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/react-e27d1b3e03961e68.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/react-compiler-runtime-4610bd6d3de9c049.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/scheduler-58b860b049ca307c.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/react-dom-e5fd46a22d5c4058.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/react-dom-client-1b4a3ee065998cea.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/react-is-e0b593954b4706d8.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/react-jsx-runtime-4915cb0f5b3aff04.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/react-reconciler-8e99e505c4429605.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/light-3a3d2c708970e4e8.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" href="https://github.githubassets.com/assets/light_high_contrast-9c7b506bdc5ea73f.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" href="https://github.githubassets.com/assets/dark-c9dacb4ec19616db.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" href="https://github.githubassets.com/assets/dark_high_contrast-5ef38214a3eabc7d.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="light" data-href="https://github.githubassets.com/assets/light-3a3d2c708970e4e8.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="light_high_contrast" data-href="https://github.githubassets.com/assets/light_high_contrast-9c7b506bdc5ea73f.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="light_colorblind" data-href="https://github.githubassets.com/assets/light_colorblind-3862d92e8cad06f0.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="light_colorblind_high_contrast" data-href="https://github.githubassets.com/assets/light_colorblind_high_contrast-554f83c57e146400.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="light_tritanopia" data-href="https://github.githubassets.com/assets/light_tritanopia-8a8312bd5594c79a.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="light_tritanopia_high_contrast" data-href="https://github.githubassets.com/assets/light_tritanopia_high_contrast-26b9d9807a0334fb.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="dark" data-href="https://github.githubassets.com/assets/dark-c9dacb4ec19616db.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="dark_high_contrast" data-href="https://github.githubassets.com/assets/dark_high_contrast-5ef38214a3eabc7d.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="dark_colorblind" data-href="https://github.githubassets.com/assets/dark_colorblind-bea0b289618fbfb6.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="dark_colorblind_high_contrast" data-href="https://github.githubassets.com/assets/dark_colorblind_high_contrast-fe483dca5ad67edd.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="dark_tritanopia" data-href="https://github.githubassets.com/assets/dark_tritanopia-7d4b8c531c77a24a.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="dark_tritanopia_high_contrast" data-href="https://github.githubassets.com/assets/dark_tritanopia_high_contrast-edfb3968733aaf25.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="dark_dimmed" data-href="https://github.githubassets.com/assets/dark_dimmed-1f24e8126354e7aa.css" media="all" rel="stylesheet"/><link crossorigin="anonymous" data-color-theme="dark_dimmed_high_contrast" data-href="https://github.githubassets.com/assets/dark_dimmed_high_contrast-bb55737dcb13dc9b.css" media="all" rel="stylesheet"/>
+<style type="text/css">
+    :root {
+      --tab-size-preference: 4;
+    }
+
+    pre, code {
+      tab-size: var(--tab-size-preference);
+    }
+  </style>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/primer-primitives-02e066689466a8cd.css" media="all" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/primer-38ae573fa780d76a.css" media="all" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/global-58d1122073b19732.css" media="all" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/github-0b4a3ee3d18dc2f0.css" media="all" rel="stylesheet"/>
+<script id="client-env" type="application/json">/* [REDACTED script] */</script>
+<script crossorigin="anonymous" src="https://github.githubassets.com/assets/high-contrast-cookie-dac2ceb09ceb817d.js" type="module"></script>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/wp-runtime-be7d2b42b60e50be.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/app-foundation-799625033ee8341e.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/app-runtime-3c481615dcdea758.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/fetch-utilities-b6ff1e30dc731d8d.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/ser-1ce9ba53965ee000.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/tp-e043b09789480cb5.js" rel="modulepreload"/>
+<script crossorigin="anonymous" defer="defer" src="https://github.githubassets.com/assets/environment-ee58359e659786f0.js" type="module"></script>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/app-runtime.9fa70928ffe4455b.module.css" media="all" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/catalyst-5bc36fa5a846f5a0.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/selector-observer-7ae05416e4a383ae.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/relative-time-element-b2d8b7dede692c9f.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/by-473024a3f6cb3892.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/ja9-b94de714266ba389.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/3h2-5f8899065b81d778.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/t2-19741658de225445.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/z8-5c899bb34cf0fc51.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/hj-ece3bec966e8a2b6.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/wc-33edcf25ba11d33f.js" rel="modulepreload"/>
+<script crossorigin="anonymous" defer="defer" src="https://github.githubassets.com/assets/github-elements-ab9b9e6b79d59b3d.js" type="module"></script>
+<script crossorigin="anonymous" defer="defer" src="https://github.githubassets.com/assets/element-registry-5bc108ed0a1ee3f0.js" type="module"></script>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/runtime-helpers-b7e0a61126a143c7.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/aria-live-e0f60f15396869e3.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/hotkey-a82e6cb07443fd1c.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/react-core-00ddc5bd2dc16c59.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/a96-f44dcca0945fa24d.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/ur-b820e79826e6a550.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/4t-f1181f796eb9ea15.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/pb-d77644db2d006abd.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/6n-b72a71e2477d5d76.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/z-b2cf9f86cb4bed3b.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/9k-707f3c96c4acaae5.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/0r-4c4af04176d5b5a2.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/sic-2f0df03b44c730aa.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/re-ee6f895ca11c0cbe.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/eon-36af335a1906af16.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/yga-dd50cf95593467fe.js" rel="modulepreload"/>
+<script crossorigin="anonymous" defer="defer" src="https://github.githubassets.com/assets/behaviors-4c05e316cacaae73.js" type="module"></script>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/react-core.1999e095e926ec12.module.css" media="all" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/8pa-cf55852a67f0ec7d.js" rel="modulepreload"/>
+<script crossorigin="anonymous" defer="defer" src="https://github.githubassets.com/assets/settings-3a6aeb4ac22cdfb3.js" type="module"></script>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/a3-535693ca876f3978.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/d0k-4b09f3c6dd6ac94b.js" rel="modulepreload"/>
+<script crossorigin="anonymous" defer="defer" src="https://github.githubassets.com/assets/sessions-762fee37ee851e63.js" type="module"></script>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/qk-98282f4ca4a2049a.js" rel="modulepreload"/>
+<script crossorigin="anonymous" defer="defer" src="https://github.githubassets.com/assets/signup-169c595a01e9c158.js" type="module"></script>
+<title>Sign in to GitHub · GitHub</title>
+<meta content="/login(.:format)" data-turbo-transient="" name="route-pattern"/>
+<meta content="sessions" data-turbo-transient="" name="route-controller"/>
+<meta content="new" data-turbo-transient="" name="route-action"/>
+<meta content="v2:5f6959d5-f7c4-28c1-0b15-e5f2f34ea1bc" name="fetch-nonce"/>
+<meta content="701273d4944fb23919c770da2da3f33b6da9ed8e668f7249090e3e9f429343b5" name="current-catalog-service-hash"/>
+<meta content="F2F5:37E4BD:4EB3DE:68AC29:6AD1C831" data-pjax-transient="true" name="request-id"/><meta content="f05ff38296efd610d90855409031ecdc0742dfb65155ebd735009d4a4e4d05f3" data-pjax-transient="true" name="html-safe-nonce"/><meta content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiJGMkY1OjM3RTRCRDo0RUIzREU6NjhBQzI5OjZBRDFDODMxIiwidmlzaXRvcl9pZCI6Ijg1NjI1NTk5NzU0ODU5ODI3NjkiLCJyZWdpb25fZWRnZSI6ImNlbnRyYWxpbmRpYSIsInJlZ2lvbl9yZW5kZXIiOiJjZW50cmFsaW5kaWEifQ==" data-pjax-transient="true" name="visitor-payload"/><meta content="fa26b2c5d1329f06eca77ec8b172506dfeaf0a5cd23d5892797ec45b0764bc3f" data-pjax-transient="true" name="visitor-hmac"/>
+<meta content="copilot" data-turbo-transient="true" name="github-keyboard-shortcuts"/>
+<meta data-turbo-transient="" name="selected-link" value="/login"/>
+<link href="https://github.githubassets.com/" rel="assets"/>
+<meta content="Apib7-x98H0j5cPqHWwSMm6dNU4GmODRoqxLiDzdx9I" name="google-site-verification"/>
+<meta content="[REDACTED]" name="octolytics-url"/>
+<meta content="true" data-turbo-transient="true" name="analytics-location-query-strip"/>
+<meta content="" name="user-login"/>
+<meta content="width=device-width" name="viewport"/>
+<meta content="GitHub is where people build software. More than 225 million people use GitHub to discover, fork, and contribute to over 800 million projects." name="description"/>
+<link href="/opensearch.xml" rel="search" title="GitHub" type="application/opensearchdescription+xml"/>
+<link href="https://github.com/fluidicon.png" rel="fluid-icon" title="GitHub"/>
+<meta content="1401488693436528" property="fb:app_id"/>
+<meta content="https://github.com" property="og:url"/>
+<meta content="GitHub" property="og:site_name"/>
+<meta content="Build software better, together" property="og:title"/>
+<meta content="GitHub is where people build software. More than 225 million people use GitHub to discover, fork, and contribute to over 800 million projects." property="og:description"/>
+<meta content="https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png" property="og:image"/>
+<meta content="image/png" property="og:image:type"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="1200" property="og:image:height"/>
+<meta content="https://github.githubassets.com/assets/github-mark-57519b92ca4e.png" property="og:image"/>
+<meta content="image/png" property="og:image:type"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="620" property="og:image:height"/>
+<meta content="https://github.githubassets.com/assets/github-octocat-13c86b8b336d.png" property="og:image"/>
+<meta content="image/png" property="og:image:type"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="620" property="og:image:height"/>
+<meta content="github" property="twitter:site"/>
+<meta content="13334762" property="twitter:site:id"/>
+<meta content="github" property="twitter:creator"/>
+<meta content="13334762" property="twitter:creator:id"/>
+<meta content="summary_large_image" property="twitter:card"/>
+<meta content="GitHub" property="twitter:title"/>
+<meta content="GitHub is where people build software. More than 225 million people use GitHub to discover, fork, and contribute to over 800 million projects." property="twitter:description"/>
+<meta content="https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png" property="twitter:image"/>
+<meta content="1200" property="twitter:image:width"/>
+<meta content="1200" property="twitter:image:height"/>
+<meta content="github.com" name="hostname"/>
+<meta content="github.com" name="expected-hostname"/>
+<meta content="bd44767a1975fdb67b4d80d0894daa083f8eb502118d75b3da50ff371ee1a37b" data-turbo-track="reload" http-equiv="x-pjax-version"/>
+<meta content="c7662755e5fb393e79a00ffb5e3a79d94f012b44b1b9be52b6749a994748d398" data-turbo-track="reload" http-equiv="x-pjax-csp-version"/>
+<meta content="29e3e619e13ed4b9386c950d46470e37da904acb4e96237d9ce12fcfbc801992" data-turbo-track="reload" http-equiv="x-pjax-css-version"/>
+<meta content="2a1ff02408a81dcf9a11379c2279208a85577d5a4f30c8a80b311700cc0f1133" data-turbo-track="reload" http-equiv="x-pjax-js-version"/>
+<meta content="no-preview" data-turbo-transient="" name="turbo-cache-control"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/github-0b4a3ee3d18dc2f0.css" media="all" rel="stylesheet"/>
+<link data-turbo-transient="" href="https://github.com/login" rel="canonical"/>
+<meta content="logged-out env-production page-responsive session-authentication" name="turbo-body-classes"/>
+<meta content="false" name="disable-turbo"/>
+<meta content="https://api.github.com/_private/browser/stats" name="browser-stats-url"/>
+<meta content="https://api.github.com/_private/browser/errors" name="browser-errors-url"/>
+<meta content="b444dd0c96a2971471c80db3750aa5fb9bd14943" data-turbo-track="reload" name="release"/>
+<meta content="full" name="ui-target"/>
+<link color="#000000" href="https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg" rel="mask-icon"/>
+<link class="js-site-favicon" href="https://github.githubassets.com/favicons/favicon.png" rel="alternate icon" type="image/png"/>
+<link class="js-site-favicon" data-base-href="https://github.githubassets.com/favicons/favicon" href="https://github.githubassets.com/favicons/favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="#1e2327" name="theme-color"/>
+<meta content="light dark" name="color-scheme"/>
+<link crossorigin="use-credentials" href="/manifest.json" rel="manifest"/>
+<link crossorigin="anonymous" data-rspack="@github-ui/github-ui:chunk-u2l" href="https://github.githubassets.com/assets/u2l.754edfc1a1629f43.module.css" rel="stylesheet"/><link crossorigin="anonymous" data-rspack="@github-ui/github-ui:chunk-1rv" href="https://github.githubassets.com/assets/1rv.eee676bc464d01e5.module.css" rel="stylesheet"/></head>
+<body class="logged-out env-production page-responsive session-authentication" style="word-wrap: break-word;">
+<div class="logged-out env-production page-responsive session-authentication" data-turbo-body="" style="word-wrap: break-word;">
+<div data-turbo-permanent="" id="__primerPortalRoot__" style="z-index: 1000; position: absolute; width: 100%;"></div>
+<div class="position-relative header-wrapper js-header-wrapper">
+<a class="px-2 tmp-py-4 color-bg-accent-emphasis color-fg-on-emphasis show-on-focus js-skip-to-content" data-skip-target-assigned="false" href="#start-of-content">Skip to content</a>
+<span class="progress-pjax-loader Progress position-fixed width-full" data-view-component="true">
+<span class="Progress-item progress-pjax-loader-bar left-0 top-0 color-bg-accent-emphasis" data-view-component="true" style="width: 0%;"></span>
+</span>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/qmp-308230626a2aedb0.js" rel="modulepreload"/>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/t7l-699ca510ac327acf.js" rel="modulepreload"/>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/qxm-8629d688b2483e64.js" rel="modulepreload"/>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/u9-6c90f83135585e72.js" rel="modulepreload"/>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/gj-a0e6872c9a40ac73.js" rel="modulepreload"/>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/keyboard-shortcuts-dialog-f07d7a10899c9c19.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/primer-react-css.e1e97d75b76f92e7.module.css" media="all" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/keyboard-shortcuts-dialog.85022ddd62d6e686.module.css" media="all" rel="stylesheet"/>
+<react-partial data-attempted-ssr="false" data-react-profiling="false" data-ssr="false" partial-name="keyboard-shortcuts-dialog">
+<script data-target="react-partial.embeddedData" type="application/json">/* [REDACTED script] */</script>
+<div data-target="react-partial.reactRoot"></div>
+</react-partial>
+<div class="authentication-header-page" role="banner">
+</div>
+<div class="js-stale-session-flash stale-session-flash flash flash-warn flash-full" data-view-component="true" hidden="hidden">
+<svg aria-hidden="true" class="octicon octicon-alert" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+</svg>
+<span class="js-stale-session-flash-signed-in" hidden="">You signed in with another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
+<span class="js-stale-session-flash-signed-out" hidden="">You signed out in another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
+<span class="js-stale-session-flash-switched" hidden="">You switched accounts on another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
+<button aria-labelledby="tooltip-cb8f3688-48fd-4319-a954-26108dcc411b" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close" data-view-component="true" id="icon-button-f52f6cfe-ce14-4e01-a496-983da4161c04" type="button"> <svg aria-hidden="true" class="octicon octicon-x Button-visual" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+</svg>
+</button><tool-tip aria-hidden="true" class="sr-only position-absolute" data-direction="s" data-type="label" data-view-component="true" for="icon-button-f52f6cfe-ce14-4e01-a496-983da4161c04" id="tooltip-cb8f3688-48fd-4319-a954-26108dcc411b" popover="manual" role="tooltip">Dismiss alert</tool-tip>
+</div>
+</div>
+<div class="show-on-focus" id="start-of-content"></div>
+<div class="application-main" data-commit-hovercards-enabled="" data-discussion-hovercards-enabled="" data-issue-and-pr-hovercards-enabled="" data-project-hovercards-enabled="">
+<main>
+<div class="authentication" data-hpc="true" data-test-selector="login-standard-view">
+<div class="authentication-header">
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/primer-react-9fe72b5f4aca3743.js" rel="modulepreload"/>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/op-76db8804e205b5d5.js" rel="modulepreload"/>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/nc-2485e88d8a01d9c2.js" rel="modulepreload"/>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/hi-1f029929971544e3.js" rel="modulepreload"/>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/660-423d27553e108b98.js" rel="modulepreload"/>
+<link crossorigin="anonymous" fetchpriority="low" href="https://github.githubassets.com/assets/sessions-auth-header-ca010f1fde5888f6.js" rel="modulepreload"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/primer-react-css.e1e97d75b76f92e7.module.css" media="all" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://github.githubassets.com/assets/sessions-auth-header.2b083cacc8949a06.module.css" media="all" rel="stylesheet"/>
+<react-partial data-attempted-ssr="true" data-react-profiling="false" data-ssr="true" partial-name="sessions-auth-header">
+<script data-target="react-partial.embeddedData" type="application/json">/* [REDACTED script] */</script>
+<div data-target="react-partial.reactRoot"><div class="authFormHeader__psacN8"><div class="authFormHeaderIcon__BRUCgi"><div class="authFormAvatarWrapperStatic__GzAKXm"><svg aria-hidden="true" class="octicon octicon-mark-github avatarCoinGithub__nQko6U" data-component="Octicon" display="inline-block" fill="currentColor" focusable="false" height="48" overflow="visible" style="vertical-align:text-bottom" viewbox="0 0 24 24" width="48"><path d="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943"></path></svg></div></div><div class="authFormHeaderContent__mffsTx"><h1 class="authFormHeaderTitle__oGeDKl">Sign in to GitHub</h1></div></div></div>
+</react-partial>
+</div>
+<div class="authentication-body authentication-body--with-form new-session">
+<div class="flash-container" data-turbo-replace="" id="js-flash-container">
+<template class="js-flash-template">
+<div class="flash flash-full {{ className }}">
+<div>
+<button aria-label="Dismiss this message" autofocus="" class="flash-close js-flash-close" type="button">
+<svg aria-hidden="true" class="octicon octicon-x" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+</svg>
+</button>
+<div aria-atomic="true" class="js-flash-alert" role="alert">
+<div>{{ message }}</div>
+</div>
+</div>
+</div>
+</template>
+</div>
+<div class="flash js-transform-notice" hidden="">
+<button aria-label="Dismiss this message" class="flash-close js-flash-close" type="button">
+<svg aria-label="Dismiss" class="octicon octicon-x" data-component="Octicon" data-view-component="true" height="16" role="img" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+</svg>
+</button>
+</div>
+<!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="/session" data-turbo="false" method="post"><input data-csrf="true" name="authenticity_token" type="hidden" value="[REDACTED]"/> <div>
+<input autocomplete="off" class="form-control" id="add_account" name="add_account" type="hidden"/>
+<label for="login_field">
+      Username or email address
+    </label>
+<input autocapitalize="off" autocomplete="username" autocorrect="off" autofocus="autofocus" class="form-control js-login-field" id="login_field" name="login" required="required" type="text"/>
+</div>
+<div class="position-relative">
+<label for="password">
+      Password
+    </label>
+<input autocomplete="current-password" class="form-control form-control js-password-field" id="password" name="password" required="required" type="password"/>
+<a class="label-link position-absolute top-0 right-0" href="/password_reset" id="forgot-password">Forgot password?</a>
+<input name="webauthn-conditional" type="hidden" value="[REDACTED]"/>
+<input class="js-support" name="javascript-support" type="hidden" value="[REDACTED]"/>
+<input class="js-webauthn-support" name="webauthn-support" type="hidden" value="[REDACTED]"/>
+<input class="js-webauthn-iuvpaa-support" name="webauthn-iuvpaa-support" type="hidden" value="[REDACTED]"/>
+<input autocomplete="off" class="form-control" id="return_to" name="return_to" type="hidden" value="[REDACTED]"/>
+<input autocomplete="off" class="form-control" id="allow_signup" name="allow_signup" type="hidden"/>
+<input autocomplete="off" class="form-control" id="client_id" name="client_id" type="hidden"/>
+<input autocomplete="off" class="form-control" id="integration" name="integration" type="hidden"/>
+<input class="form-control" hidden="hidden" name="required_field_9061" type="text"/>
+<input class="form-control" name="timestamp" type="hidden" value="[REDACTED]"/>
+<input class="form-control" name="timestamp_secret" type="hidden" value="[REDACTED]"/>
+</div>
+<div>
+<input class="btn btn-primary btn-block js-sign-in-button" data-disable-with="Signing in…" data-signin-label="Sign in" data-sso-label="Sign in with your identity provider" development="false" disable-emu-sso="false" name="commit" type="submit" value="Sign in"/>
+</div>
+</form> <webauthn-status class="js-webauthn-login-emu-control" data-catalyst="">
+<div class="authentication-divider js-webauthn-login-divider">
+<span>or</span>
+</div>
+<!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="/session" class="js-conditional-webauthn-placeholder" data-turbo="false" data-webauthn-sign-request='{"publicKey":{"userVerification":"required","timeout":60000,"challenge":"zT82XbgHCgc-QQYJLdY1McA45k66B85CYNuYattl6fo","allowCredentials":[],"rpId":"github.com"},"mediation":"conditional"}' hidden="hidden" method="post"><input name="authenticity_token" type="hidden" value="[REDACTED]"/> <input class="js-conditional-webauthn-response" name="webauthn_response" type="hidden"/>
+<input name="webauthn-conditional" type="hidden" value="[REDACTED]"/>
+<input class="js-support" name="javascript-support" type="hidden" value="[REDACTED]"/>
+<input class="js-webauthn-support" name="webauthn-support" type="hidden" value="[REDACTED]"/>
+<input class="js-webauthn-iuvpaa-support" name="webauthn-iuvpaa-support" type="hidden" value="[REDACTED]"/>
+<input autocomplete="off" class="form-control" id="return_to" name="return_to" type="hidden" value="[REDACTED]"/>
+<input autocomplete="off" class="form-control" id="allow_signup" name="allow_signup" type="hidden"/>
+<input autocomplete="off" class="form-control" id="client_id" name="client_id" type="hidden"/>
+<input autocomplete="off" class="form-control" id="integration" name="integration" type="hidden"/>
+<input class="form-control" hidden="hidden" name="required_field_78ed" type="text"/><input autocomplete="off" class="form-control" name="timestamp" type="hidden" value="[REDACTED]"/><input autocomplete="off" class="form-control" name="timestamp_secret" type="hidden" value="[REDACTED]"/>
+</form>
+<div class="js-webauthn-login-section" hidden="">
+<noscript></noscript>
+<!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="/session" class="js-webauthn-form" data-turbo="false" method="post"><input name="authenticity_token" type="hidden" value="[REDACTED]"/> <div class="webauthentication-form-body">
+<webauthn-get data-catalyst="" data-json='{"publicKey":{"userVerification":"required","timeout":60000,"challenge":"zT82XbgHCgc-QQYJLdY1McA45k66B85CYNuYattl6fo","allowCredentials":[],"rpId":"github.com"}}' data-target="sudo-credential-options.webauthnGet" subtle-login="">
+<noscript></noscript>
+<x-banner data-catalyst="" data-dismiss-scheme="none" data-view-component="true">
+<div class="tmp-mb-3 Banner flash Banner--warning flash-warn text-left p-0 tmp-p-0" data-target="webauthn-get.passkeysUnsupportedMessage" data-view-component="true">
+<div class="Banner-visual">
+<svg aria-hidden="true" class="octicon octicon-alert" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+</svg>
+</div>
+<div class="Banner-message" data-view-component="true">
+<p class="Banner-title" data-target="x-banner.titleText">
+      This browser or device is reporting partial passkey support.
+</p>
+</div></div></x-banner>
+<x-banner data-catalyst="" data-dismiss-scheme="none" data-view-component="true">
+<div class="tmp-mb-3 Banner flash Banner--warning flash-warn text-left p-0 tmp-p-0" data-target="webauthn-get.unsupportedMessage" data-view-component="true" hidden="hidden">
+<div class="Banner-visual">
+<svg aria-hidden="true" class="octicon octicon-alert" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+</svg>
+</div>
+<div class="Banner-message" data-view-component="true">
+<p class="Banner-title" data-target="x-banner.titleText">
+    Webauthn isn't supported. Use a different browser or device to use your passkey.
+</p>
+</div></div></x-banner>
+<x-banner data-catalyst="" data-dismiss-scheme="none" data-view-component="true">
+<div class="tmp-mb-3 Banner flash Banner--error flash-error text-left p-0 tmp-p-0" data-target="webauthn-get.errorMessage" data-targets="webauthn-get.messages" data-view-component="true" hidden="">
+<div class="Banner-visual">
+<svg aria-hidden="true" class="octicon octicon-alert" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+</svg>
+</div>
+<div class="Banner-message" data-view-component="true">
+<p class="Banner-title" data-target="x-banner.titleText">
+<span data-target="webauthn-get.errorText" role="alert"></span>
+</p>
+</div></div></x-banner>
+<p class="tmp-my-3 text-center color-fg-muted" data-target="webauthn-get.waitingMessage" data-targets="webauthn-get.messages" hidden="">
+<span data-view-component="true">
+<svg aria-hidden="true" class="v-align-middle mr-2 tmp-mr-2 anim-rotate" data-view-component="true" fill="none" height="16" style="box-sizing: content-box; color: var(--color-icon-primary);" viewbox="0 0 16 16" width="16">
+<circle cx="8" cy="8" fill="none" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke"></circle>
+<path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-linecap="round" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg> <span class="sr-only">Loading</span>
+</span>
+    Waiting for input from browser interaction...
+  </p>
+<button class="js-webauthn-confirm-button btn btn-block Button--secondary Button--medium Button mt-0 tmp-mt-0" data-action="click:webauthn-get#prompt" data-retry-message="Retry passkey" data-target="webauthn-get.button" data-view-component="true" type="button"> <span class="Button-content">
+<span class="Button-visual Button-leadingVisual">
+<svg aria-hidden="true" class="octicon octicon-passkey-fill color-fg-inherit" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M2.743 4.757a3.757 3.757 0 1 1 5.851 3.119 5.991 5.991 0 0 1 2.15 1.383c.17.17.257.405.258.646.003.598.001 1.197 0 1.795L11 12.778v.721a.5.5 0 0 1-.5.5H1.221a.749.749 0 0 1-.714-.784 6.004 6.004 0 0 1 3.899-5.339 3.754 3.754 0 0 1-1.663-3.119Z"></path><path d="M15.75 6.875c0 .874-.448 1.643-1.127 2.09a.265.265 0 0 0-.123.22v.59c0 .067-.026.13-.073.177l-.356.356a.125.125 0 0 0 0 .177l.356.356c.047.047.073.11.073.176v.231c0 .067-.026.13-.073.177l-.356.356a.125.125 0 0 0 0 .177l.356.356c.047.047.073.11.073.177v.287a.247.247 0 0 1-.065.168l-.8.88a.52.52 0 0 1-.77 0l-.8-.88a.247.247 0 0 1-.065-.168V9.185a.264.264 0 0 0-.123-.22 2.5 2.5 0 1 1 3.873-2.09ZM14 6.5a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+</span>
+<span class="Button-label"><span data-target="webauthn-get.buttonText">Continue with passkey</span></span>
+</span>
+</button>
+</webauthn-get>
+<input class="js-webauthn-response" name="webauthn_response" type="hidden"/>
+<input name="webauthn-conditional" type="hidden" value="[REDACTED]"/>
+<input class="js-support" name="javascript-support" type="hidden" value="[REDACTED]"/>
+<input class="js-webauthn-support" name="webauthn-support" type="hidden" value="[REDACTED]"/>
+<input class="js-webauthn-iuvpaa-support" name="webauthn-iuvpaa-support" type="hidden" value="[REDACTED]"/>
+<input autocomplete="off" class="form-control" id="return_to" name="return_to" type="hidden" value="[REDACTED]"/>
+<input autocomplete="off" class="form-control" id="allow_signup" name="allow_signup" type="hidden"/>
+<input autocomplete="off" class="form-control" id="client_id" name="client_id" type="hidden"/>
+<input autocomplete="off" class="form-control" id="integration" name="integration" type="hidden"/>
+<input class="form-control" hidden="hidden" name="required_field_e1ff" type="text"/><input autocomplete="off" class="form-control" name="timestamp" type="hidden" value="[REDACTED]"/><input autocomplete="off" class="form-control" name="timestamp_secret" type="hidden" value="[REDACTED]"/>
+</div>
+</form> </div>
+<!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="/sessions/social/google/initiate" data-turbo="false" method="get">
+<input name="return_to" type="hidden" value=""/>
+<input name="disable_signup" type="hidden" value="[REDACTED]"/>
+<button class="Button--secondary Button--medium Button Button--fullWidth mt-2 tmp-mt-2" data-disable-with="Continuing with Google..." data-view-component="true" type="submit"> <span class="Button-content">
+<span class="Button-visual Button-leadingVisual">
+<svg data-view-component="true" height="16" width="16"> <svg aria-hidden="true" class="octicon color-fg-default" data-view-component="true" height="16" viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_643_9687)">
+<path d="M8.00018 3.16667C9.18018 3.16667 10.2368 3.57333 11.0702 4.36667L13.3535 2.08333C11.9668 0.793333 10.1568 0 8.00018 0C4.87352 0 2.17018 1.79333 0.853516 4.40667L3.51352 6.47C4.14352 4.57333 5.91352 3.16667 8.00018 3.16667Z" fill="#EA4335"></path>
+<path d="M15.66 8.18335C15.66 7.66002 15.61 7.15335 15.5333 6.66669H8V9.67335H12.3133C12.12 10.66 11.56 11.5 10.72 12.0667L13.2967 14.0667C14.8 12.6734 15.66 10.6134 15.66 8.18335Z" fill="#4285F4"></path>
+<path d="M3.51 9.53001C3.35 9.04668 3.25667 8.53334 3.25667 8.00001C3.25667 7.46668 3.34667 6.95334 3.51 6.47001L0.85 4.40668C0.306667 5.48668 0 6.70668 0 8.00001C0 9.29334 0.306667 10.5133 0.853333 11.5933L3.51 9.53001Z" fill="#FBBC05"></path>
+<path d="M8.0001 16C10.1601 16 11.9768 15.29 13.2968 14.0633L10.7201 12.0633C10.0034 12.5467 9.0801 12.83 8.0001 12.83C5.91343 12.83 4.14343 11.4233 3.5101 9.52667L0.850098 11.59C2.1701 14.2067 4.87343 16 8.0001 16Z" fill="#34A853"></path>
+</g>
+<defs>
+<clippath id="clip0_643_9687">
+<rect fill="white" height="16" width="16"></rect>
+</clippath>
+</defs>
+</svg>
+</svg>
+</span>
+<span class="Button-label">Continue with Google</span>
+</span>
+</button>
+</form>
+<!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="/sessions/social/apple/initiate" data-turbo="false" method="get">
+<input name="return_to" type="hidden" value=""/>
+<input name="disable_signup" type="hidden" value="[REDACTED]"/>
+<button class="Button--secondary Button--medium Button Button--fullWidth mt-2 tmp-mt-2" data-disable-with="Continuing with Apple..." data-view-component="true" type="submit"> <span class="Button-content">
+<span class="Button-visual Button-leadingVisual">
+<svg data-view-component="true" height="16" width="16"> <svg aria-hidden="true" class="octicon" data-view-component="true" fill="none" height="16" viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3150_11451)">
+<path d="M8.08803 4.3535C8.74395 4.3535 9.56615 3.91006 10.0558 3.31881C10.4992 2.78299 10.8226 2.03469 10.8226 1.28639C10.8226 1.18477 10.8133 1.08314 10.7948 1C10.065 1.02771 9.18738 1.48963 8.6608 2.10859C8.24508 2.57975 7.86631 3.31881 7.86631 4.07635C7.86631 4.18721 7.88479 4.29807 7.89402 4.33502C7.94021 4.34426 8.01412 4.3535 8.08803 4.3535ZM5.77846 15.5318C6.67457 15.5318 7.07182 14.9313 8.18965 14.9313C9.32596 14.9313 9.57539 15.5133 10.5731 15.5133C11.5524 15.5133 12.2083 14.608 12.8273 13.7211C13.5201 12.7049 13.8065 11.7072 13.825 11.661C13.7603 11.6425 11.885 10.8757 11.885 8.7232C11.885 6.85707 13.3631 6.01639 13.4462 5.95172C12.467 4.5475 10.9796 4.51055 10.5731 4.51055C9.47377 4.51055 8.57766 5.1757 8.01412 5.1757C7.4044 5.1757 6.60066 4.5475 5.64912 4.5475C3.83842 4.5475 2 6.0441 2 8.87101C2 10.6263 2.68363 12.4832 3.52432 13.6842C4.2449 14.7004 4.87311 15.5318 5.77846 15.5318Z" fill="currentColor"></path>
+</g>
+<defs>
+<clippath id="clip0_3150_11451">
+<rect height="16" width="16"></rect>
+</clippath>
+</defs>
+</svg>
+</svg>
+</span>
+<span class="Button-label">Continue with Apple</span>
+</span>
+</button>
+</form>
+</webauthn-status>
+</div>
+<div class="authentication-footer">
+<div class="authentication-login-footer-links">
+<p class="mt-1 mb-0 p-0">
+            New to GitHub?
+              <a data-ga-click="Sign in, switch to sign up" data-hydro-click='{"event_type":"authentication.click","payload":{"location_in_page":"sign in switch to sign up","repository_id":null,"auth_type":"SIGN_UP","originating_url":"https://github.com/login","user_id":null}}' data-hydro-click-hmac="d943b5df3b8e74686b4009e60ef5e059ef46ba02071647af580daec2c03c709e" href="/signup?source=login">Create an account</a>
+</p>
+</div>
+<webauthn-subtle class="js-webauthn-subtle" data-catalyst="">
+<p class="mb-0 mt-0 js-webauthn-subtle-emu-control">
+<button class="Button--link Button--medium Button" data-action="click:webauthn-subtle#prompt" data-view-component="true" type="button"> <span class="Button-content">
+<span class="Button-label">Sign in with a passkey</span>
+</span>
+</button>
+</p>
+</webauthn-subtle>
+</div>
+</div>
+</main>
+</div>
+<div class="footer-session-authentication" role="contentinfo">
+<ul class="footer-session-authentication-links">
+<li>
+<a class="Link--secondary Link" data-analytics-event='{"category":"Footer","action":"go to Terms","label":"text:terms"}' data-view-component="true" href="https://docs.github.com/site-policy/github-terms/github-terms-of-service">Terms</a>
+</li>
+<li>
+<a class="Link--secondary Link" data-analytics-event='{"category":"Footer","action":"go to privacy","label":"text:privacy"}' data-view-component="true" href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement">Privacy</a>
+</li>
+<li>
+<a class="Link--secondary Link" data-analytics-event='{"category":"Footer","action":"go to docs","label":"text:docs"}' data-view-component="true" href="https://docs.github.com">Docs</a>
+</li>
+<li>
+<a class="Link--secondary Link" data-analytics-event='{"category":"Footer","action":"go to contact","label":"text:contact"}' data-view-component="true" href="https://support.github.com">Contact GitHub Support</a>
+</li>
+<li class="mx-2">
+<cookie-consent-link data-catalyst="">
+<button class="Link--secondary underline-on-hover border-0 p-0 color-bg-transparent" data-action="click:cookie-consent-link#showConsentManagement" data-analytics-event='{"location":"footer","action":"cookies","context":"subfooter","tag":"link","label":"cookies_link_subfooter_footer"}' type="button">
+      Manage cookies
+    </button>
+</cookie-consent-link>
+</li>
+<li class="mx-2">
+<cookie-consent-link data-catalyst="">
+<button class="Link--secondary underline-on-hover border-0 p-0 color-bg-transparent text-left" data-action="click:cookie-consent-link#showConsentManagement" data-analytics-event='{"location":"footer","action":"dont_share_info","context":"subfooter","tag":"link","label":"dont_share_info_link_subfooter_footer"}' type="button">
+        Do not share my personal information
+      </button>
+</cookie-consent-link>
+</li>
+</ul>
+</div>
+<ghcc-consent class="position-fixed bottom-0 left-0" data-catalyst="" data-cookie-consent-required="false" data-initial-cookie-consent-allowed="" data-locale="en" id="ghcc" style="z-index: 999999"></ghcc-consent>
+<div class="ajax-error-message flash flash-error" hidden="" id="ajax-error-message">
+<svg aria-hidden="true" class="octicon octicon-alert" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+</svg>
+<button aria-label="Dismiss error" class="flash-close js-ajax-error-dismiss" type="button">
+<svg aria-hidden="true" class="octicon octicon-x" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+</svg>
+</button>
+    You can’t perform that action at this time.
+  </div>
+<template id="site-details-dialog">
+<details class="details-reset details-overlay details-overlay-dark lh-default color-fg-default hx_rsm" open="">
+<summary aria-label="Close dialog" role="button"></summary>
+<details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast hx_rsm-dialog hx_rsm-modal">
+<button aria-label="Close dialog" class="Box-btn-octicon m-0 btn-octicon position-absolute right-0 top-0" data-close-dialog="" type="button">
+<svg aria-hidden="true" class="octicon octicon-x" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+</svg>
+</button>
+<div class="octocat-spinner tmp-my-6 js-details-dialog-spinner"></div>
+</details-dialog>
+</details>
+</template>
+<div class="Popover js-hovercard-content position-absolute" style="display: none; outline: none;">
+<div class="Popover-message Popover-message--bottom-left Popover-message--large Box color-shadow-large" style="width:360px;"></div>
+</div>
+<template id="snippet-clipboard-copy-button">
+<div class="zeroclipboard-container position-absolute right-0 top-0">
+<clipboard-copy aria-label="Copy code to clipboard" class="ClipboardButton btn js-clipboard-copy m-2 p-0" data-copy-feedback="Copied!" data-tooltip-direction="w">
+<svg aria-hidden="true" class="octicon octicon-copy js-clipboard-copy-icon m-2 tmp-m-2" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+<svg aria-hidden="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none m-2 tmp-m-2" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+</clipboard-copy>
+</div>
+</template>
+<template id="snippet-clipboard-copy-button-unpositioned">
+<div class="zeroclipboard-container">
+<clipboard-copy aria-label="Copy code to clipboard" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w">
+<svg aria-hidden="true" class="octicon octicon-copy js-clipboard-copy-icon" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+<svg aria-hidden="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none" data-component="Octicon" data-view-component="true" height="16" version="1.1" viewbox="0 0 16 16" width="16">
+<path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+</clipboard-copy>
+</div>
+</template>
+</div>
+<div aria-atomic="true" aria-live="polite" class="sr-only mt-n1" id="js-global-screen-reader-notice"></div>
+<div aria-atomic="true" aria-live="assertive" class="sr-only mt-n1" id="js-global-screen-reader-notice-assertive"></div>
+<microsoft-analytics data-catalyst="">
+</microsoft-analytics>
+</body></html>

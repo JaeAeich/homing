@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Eligibility · Acme Payer</title>
+<meta content="[REDACTED]" name="csrf-token"/>
+<meta content="[REDACTED_ACME_USERNAME]" name="member-login"/>
+<style>body{font-family:sans-serif;margin:2rem}.flash{color:#b00}label{display:block;margin-top:.6rem}</style>
+</head><body>
+<header class="topbar"><strong>Acme Payer</strong>
+<span class="who">Signed in as [REDACTED_ACME_USERNAME]</span> <a href="/logout">Sign out</a>
+</header>
+<main>
+<h1>Eligibility for Jane Example</h1>
+<form action="/eligibility/result" aria-label="Eligibility" class="elig-form" method="get" target="_top">
+<input name="member" type="hidden" value="[REDACTED]"/>
+<label for="plan">Plan</label><select class="plan-select" id="plan" name="plan"><option value="">Choose a plan</option><option value="PPO Gold">PPO Gold</option><option value="HMO Silver">HMO Silver</option></select>
+<label for="service_type">Service type</label><select id="service_type" name="service_type"><option value="Office visit">Office visit</option><option value="Physical therapy">Physical therapy</option></select>
+<label for="dos">Date of service</label><input id="dos" name="dos" type="date"/>
+<button class="btn-check" type="submit">Check eligibility</button>
+</form>
+<script>/* [REDACTED script] */</script>
+</main></body></html>
