@@ -64,7 +64,12 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      # gitleaks/gitleaks-action v3.0.0
-      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e
+      # The CLI scans the full history; the action fails on a first push.
+      - name: gitleaks
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: 8.30.1
+        run: |
+          url=https://github.com/gitleaks/gitleaks/releases/download
+          curl -sSfL "$url/v$VERSION/gitleaks_${VERSION}_linux_x64.tar.gz" \
+            | tar -xz gitleaks
+          ./gitleaks git --redact --no-banner .
